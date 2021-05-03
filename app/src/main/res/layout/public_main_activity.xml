@@ -35,4 +35,11 @@
         android:text="@string/sign_in"
         android:onClick="signIn"/>
 
+    <Button android:id="@+id/request"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="Тестовый запрос"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/reports_btn"/>
+
 </RelativeLayout>
