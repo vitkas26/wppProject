@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">vpp-android</string>
+    <string name="work_version">version 0.1</string>
+    <string name="build_version">version 0.1</string>
+    <string name="production_version">version 1.0</string>
+
+    <!--Public strings-->
+    <string name="sign_in">Вход</string>
+    <string name="input_data">Ввод данных</string>
+    <string name="reports">Отчёты</string>
 </resources>
