@@ -24,7 +24,7 @@
         android:layout_height="70dp"
         android:text="@string/reports"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/input_data_btn" />
+        android:layout_below="@+id/input_data_btn"/>
 
     <Button android:id="@+id/sign_in_btn"
         android:layout_width="wrap_content"
@@ -32,8 +32,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
         android:layout_marginTop="5dp"
-        android:text="@string/sign_in"
-        android:onClick="signIn"/>
+        android:text="@string/sign_in"/>
 
     <Button android:id="@+id/request"
         android:layout_width="250dp"

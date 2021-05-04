@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".InputData">
+
+    <TextView android:id="@+id/data_username"
+        android:text="Имя пользователя"
+        android:textSize="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/Products"
+        android:layout_below="@id/data_username"/>
+
+    <EditText android:id="@+id/consumption_rate"
+        android:hint="Норма расхода на 1 человека в месяц кг/месяц"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/spinner"/>
+
+    <EditText android:id="@+id/produced"
+        android:layout_centerHorizontal="true"
+        android:hint="Произведено, тонна"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/consumption_rate"/>
+
+    <EditText android:id="@+id/stock_by_population"
+        android:layout_centerHorizontal="true"
+        android:hint="Запасы в целом по населению, тонна"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/produced"/>
+
+    <EditText android:id="@+id/outlet_stock"
+        android:layout_centerHorizontal="true"
+        android:hint="Запасы в торговых точках, тонна"
+        android:layout_marginTop="40dp"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/stock_by_population"/>
+
+    <EditText android:id="@+id/price"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:hint="Цена, кг/сом"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/outlet_stock"/>
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Отправить"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/price"
+        />
+
+</RelativeLayout>

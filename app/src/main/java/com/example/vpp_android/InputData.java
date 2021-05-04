@@ -1,20 +1,17 @@
 package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NavUtils;
 
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-public class SignIn extends AppCompatActivity {
+public class InputData extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_input_data);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
