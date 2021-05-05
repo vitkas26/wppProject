@@ -10,7 +10,26 @@
     <string name="reports">Отчёты</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
+    <string name="submit">Отправить</string>
+    <string name="view">Просмотреть</string>
     <string name="token">Token c45557294dc853e2250ae35de8aa495b24b633c4</string>
+
+    <!--Hint strings InputData-->
+    <string name="consumption_rate">
+        Норма расхода на 1 человека в месяц кг/месяц
+    </string>
+    <string name="produced">
+        Произведено, тонна
+    </string>
+    <string name="stock_by_population">
+        Запасы в целом по населению, тонна
+    </string>
+    <string name="outlet_stock">
+        Запасы в торговых точках, тонна
+    </string>
+    <string name="price">
+        Цена, кг/сом
+    </string>
 
     <!--Items strings-->
     <string-array name="Products">
@@ -29,6 +48,5 @@
         <item>Яйца, тыс. штук</item>
         <item>Рис</item>
         <item>Картофель</item>
-
     </string-array>
 </resources>
