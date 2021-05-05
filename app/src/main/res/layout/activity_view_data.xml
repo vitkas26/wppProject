@@ -7,31 +7,32 @@
     tools:context=".ViewData">
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/costItems"
         android:layout_centerHorizontal="true"
         android:layout_width="300dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="60dp"
         android:layout_height="50dp"
         android:entries="@array/Products"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:text="@string/consumption_rate"
         android:layout_above="@+id/consumption_rate"
         android:layout_alignStart="@id/consumption_rate"
+        android:textSize="14sp"
         />
 
-    <TextView android:id="@+id/consumption_rate"
-        android:inputType="text"
-        android:hint="@string/consumption_rate"
-        android:autofillHints="@string/consumption_rate"
-        android:layout_marginBottom="40dp"
+    <TextView android:text="25"
+        android:textSize="18sp"
+        android:id="@+id/consumption_rate"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/spinner"/>
+        android:layout_height="30dp"
+        android:layout_below="@id/costItems"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,14 +42,14 @@
         android:layout_alignStart="@id/produced"
         />
 
-    <TextView android:id="@+id/produced"
-        android:inputType="text"
+    <TextView  android:text="25"
+        android:id="@+id/produced"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:hint="@string/produced"
-        android:autofillHints="@string/produced"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="60dp"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_height="30dp"
         android:layout_below="@id/consumption_rate"/>
 
     <TextView
@@ -59,14 +60,14 @@
         android:layout_alignStart="@id/stock_by_population"
         />
 
-    <TextView android:id="@+id/stock_by_population"
-        android:inputType="text"
+    <TextView android:text="25"
+        android:id="@+id/stock_by_population"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
-        android:hint="@string/stock_by_population"
-        android:autofillHints="@string/stock_by_population"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="10dp"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_below="@id/produced"/>
 
     <TextView
@@ -77,14 +78,14 @@
         android:layout_alignStart="@id/outlet_stock"
         />
 
-    <TextView android:id="@+id/outlet_stock"
-        android:inputType="text"
+    <TextView android:text="25"
+        android:id="@+id/outlet_stock"
         android:layout_centerHorizontal="true"
-        android:hint="@string/outlet_stock"
-        android:autofillHints="@string/outlet_stock"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="10dp"
+        android:textSize="18sp"
+        android:layout_marginBottom="60dp"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="30dp"
         android:layout_below="@id/stock_by_population"/>
 
     <TextView
@@ -95,13 +96,21 @@
         android:layout_alignStart="@id/price"
         />
 
-    <TextView android:id="@+id/price"
-        android:inputType="text"
+    <TextView android:text="25"
+        android:id="@+id/price"
         android:layout_centerHorizontal="true"
-        android:hint="@string/price"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/outlet_stock"
-        android:autofillHints="@string/price" />
+        android:layout_marginBottom="30dp"/>
+
+    <Button android:id="@+id/view_data"
+        android:text="@string/view"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/price"/>
 
 </RelativeLayout>
