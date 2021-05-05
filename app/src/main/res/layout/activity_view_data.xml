@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewData">
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:layout_height="50dp"
+        android:entries="@array/Products"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/consumption_rate"
+        android:layout_above="@+id/consumption_rate"
+        android:layout_alignStart="@id/consumption_rate"
+        />
+
+    <TextView android:id="@+id/consumption_rate"
+        android:inputType="text"
+        android:hint="@string/consumption_rate"
+        android:autofillHints="@string/consumption_rate"
+        android:layout_marginBottom="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/spinner"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/produced"
+        android:layout_above="@+id/produced"
+        android:layout_alignStart="@id/produced"
+        />
+
+    <TextView android:id="@+id/produced"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/produced"
+        android:autofillHints="@string/produced"
+        android:layout_marginBottom="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/consumption_rate"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stock_by_population"
+        android:layout_above="@+id/stock_by_population"
+        android:layout_alignStart="@id/stock_by_population"
+        />
+
+    <TextView android:id="@+id/stock_by_population"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/stock_by_population"
+        android:autofillHints="@string/stock_by_population"
+        android:layout_marginBottom="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/produced"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/outlet_stock"
+        android:layout_above="@+id/outlet_stock"
+        android:layout_alignStart="@id/outlet_stock"
+        />
+
+    <TextView android:id="@+id/outlet_stock"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/outlet_stock"
+        android:autofillHints="@string/outlet_stock"
+        android:layout_marginBottom="40dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/stock_by_population"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/price"
+        android:layout_above="@+id/price"
+        android:layout_alignStart="@id/price"
+        />
+
+    <TextView android:id="@+id/price"
+        android:inputType="text"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/price"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/outlet_stock"
+        android:autofillHints="@string/price" />
+
+</RelativeLayout>

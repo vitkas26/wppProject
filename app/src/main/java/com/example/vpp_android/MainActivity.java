@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button signIn;
     Button inputData;
+    Button viewData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         signIn = findViewById(R.id.sign_in_btn);
         inputData = findViewById(R.id.input_data_btn);
+        viewData = findViewById(R.id.view_data);
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(v, InputData.class);
+            }
+        });
+
+        viewData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(v, ViewData.class);
             }
         });
     }

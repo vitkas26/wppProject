@@ -19,12 +19,19 @@
         android:text="@string/input_data"
         android:layout_centerInParent="true" />
 
+    <Button android:id="@+id/view_data"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="@string/view"
+        android:layout_below="@id/input_data_btn"
+        android:layout_centerInParent="true"/>
+
     <Button android:id="@+id/reports_btn"
         android:layout_width="250dp"
         android:layout_height="70dp"
         android:text="@string/reports"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/input_data_btn"/>
+        android:layout_below="@+id/view_data"/>
 
     <Button android:id="@+id/sign_in_btn"
         android:layout_width="wrap_content"
