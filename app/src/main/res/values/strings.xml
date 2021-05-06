@@ -12,7 +12,6 @@
     <string name="password">Пароль</string>
     <string name="submit">Отправить</string>
     <string name="view">Просмотреть</string>
-    <string name="token">Token c45557294dc853e2250ae35de8aa495b24b633c4</string>
 
     <!--Hint strings InputData-->
     <string name="consumption_rate">
@@ -32,21 +31,21 @@
     </string>
 
     <!--Items strings-->
-    <string-array name="Products">
-        <item>Пшеница</item>
-        <item>Пшеничная мука</item>
-        <item>Макаронные изделия</item>
-        <item>Молоко и молочные изделия</item>
-        <item>Говядина</item>
-        <item>Конина</item>
-        <item>Баранина(козлятина)</item>
-        <item>Свинина</item>
-        <item>Мясо домашней птицы</item>
-        <item>Растительное масло</item>
-        <item>Сахар</item>
-        <item>Соль</item>
-        <item>Яйца, тыс. штук</item>
-        <item>Рис</item>
-        <item>Картофель</item>
-    </string-array>
+<!--    <string-array name="Products">-->
+<!--        <item>Пшеница</item>-->
+<!--        <item>Пшеничная мука</item>-->
+<!--        <item>Макаронные изделия</item>-->
+<!--        <item>Молоко и молочные изделия</item>-->
+<!--        <item>Говядина</item>-->
+<!--        <item>Конина</item>-->
+<!--        <item>Баранина(козлятина)</item>-->
+<!--        <item>Свинина</item>-->
+<!--        <item>Мясо домашней птицы</item>-->
+<!--        <item>Растительное масло</item>-->
+<!--        <item>Сахар</item>-->
+<!--        <item>Соль</item>-->
+<!--        <item>Яйца, тыс. штук</item>-->
+<!--        <item>Рис</item>-->
+<!--        <item>Картофель</item>-->
+<!--    </string-array>-->
 </resources>
