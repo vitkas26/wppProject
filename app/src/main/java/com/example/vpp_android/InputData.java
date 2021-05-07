@@ -66,7 +66,7 @@ public class InputData extends AppCompatActivity {
 
             @Override
             public void onFailure(Throwable t) {
-                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT);
+                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -77,13 +77,11 @@ public class InputData extends AppCompatActivity {
                 int posInt = Integer.parseInt(itemPos);
                 Toast.makeText(parent.getContext(), "Position: " + posInt, Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
     }
 
     @Override

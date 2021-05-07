@@ -7,7 +7,6 @@ public class Costs {
     private float produced;
     private float stock_by_population;
     private float outlet_stock;
-    @SerializedName("body")
     private float price;
 
     public float getConsumption_rate() {

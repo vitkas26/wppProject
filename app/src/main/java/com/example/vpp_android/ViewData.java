@@ -17,7 +17,6 @@ public class ViewData extends AppCompatActivity{
 
     Spinner costsItem;
     Button viewData;
-    public static final String mainUrl = "http://212.42.106.73/api/v1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +31,7 @@ public class ViewData extends AppCompatActivity{
 
             }
         });
-
         //Cost items selected listener
-        costsItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @SuppressLint("ResourceType")
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String itemPos = String.valueOf(position);
-                int posInt = Integer.parseInt(itemPos);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         //Add back button to Action Button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);

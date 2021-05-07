@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "279041143195",
+    "project_id": "food-security-6a570",
+    "storage_bucket": "food-security-6a570.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279041143195:android:f63c42aed159c1eef3f13e",
+        "android_client_info": {
+          "package_name": "com.example.vpp_android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279041143195-osnje5r9r4ts2k4h6em3dn4t4veih5kh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgBtGQOdCLJsS34re024wLZoxVf8XIT-Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279041143195-osnje5r9r4ts2k4h6em3dn4t4veih5kh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

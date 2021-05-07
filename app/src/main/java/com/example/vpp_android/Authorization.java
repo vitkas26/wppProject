@@ -1,15 +1,18 @@
 package com.example.vpp_android;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Authorization {
-    private String user;
+    @SerializedName("username")
+    @Expose
+    private String username;
+    @SerializedName("password")
+    @Expose
     private String password;
 
-    public String getACCESS_TOKEN() {
-        return "Token c45557294dc853e2250ae35de8aa495b24b633c4";
-    }
-
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
