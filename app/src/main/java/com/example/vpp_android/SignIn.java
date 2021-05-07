@@ -39,18 +39,18 @@ public class SignIn extends AppCompatActivity {
             public void onClick(View v) {
                 authUser(login.getText().toString(), password.getText().toString());
             }
-
         });
     }
 
     private void authUser(String username, String password){
+        showMessage(password);
             mAPIAuth.authUser(username, password).enqueue(new Callback<Authorization>() {
                 @Override
                 public void onResponse(Response<Authorization> response) {
                     if (response.isSuccess()) {
-                        showResponse(response.body().toString());
+                        showMessage("true");
                     }else{
-                        showMessage(response.body().toString());
+                        showResponse("Code: " + response.code());
                     }
                 }
                 @Override

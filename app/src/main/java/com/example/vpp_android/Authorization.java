@@ -4,12 +4,14 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Authorization {
-    @SerializedName("username")
-    @Expose
+    @SerializedName("body")
     private String username;
-    @SerializedName("password")
-    @Expose
     private String password;
+
+    public Authorization(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;
