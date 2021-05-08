@@ -1,16 +1,17 @@
-package com.example.vpp_android;
+package auth_classes;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Authorization {
-    @SerializedName("body")
     private String username;
     private String password;
+    private String token;
+    private int user_id;
 
-    public Authorization(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public Authorization(int user_id, String token) {
+        this.user_id = user_id;
+        this.token = token;
     }
 
     public String getUsername() {
@@ -19,5 +20,13 @@ public class Authorization {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public int getUserId() {
+        return user_id;
     }
 }

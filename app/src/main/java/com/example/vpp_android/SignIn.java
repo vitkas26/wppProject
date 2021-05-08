@@ -9,16 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Objects;
+
+import api_service.APIService;
+import api_service.APIUtils;
+import auth_classes.Authorization;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class SignIn extends AppCompatActivity {
     EditText login;
     EditText password;
     Button submit;
-    APIAuth mAPIAuth;
+    APIService mAPIService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,39 +36,37 @@ public class SignIn extends AppCompatActivity {
         password = findViewById(R.id.sing_in_password);
         submit = findViewById(R.id.sign_in_btn);
 
-        mAPIAuth = APIUtils.getAPIService();
-
-        String loginText = login.getText().toString();
-        String passwordText = password.getText().toString();
+        mAPIService = APIUtils.getAPIService();
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                authUser(login.getText().toString(), password.getText().toString());
+                authUser(login.getText().toString().trim(), password.getText().toString().trim());
             }
         });
     }
 
+    //Authentication private method
     private void authUser(String username, String password){
-        showMessage(password);
-            mAPIAuth.authUser(username, password).enqueue(new Callback<Authorization>() {
+            mAPIService.authUser(username, password).enqueue(new Callback<Authorization>(){
                 @Override
                 public void onResponse(Response<Authorization> response) {
-                    if (response.isSuccess()) {
-                        showMessage("true");
-                    }else{
-                        showResponse("Code: " + response.code());
+                    if (response.isSuccess()){
+                        showMessage("Вход выполнен");
+                        int id = response.body().getUserId();
+                        String token = String.format("Token %s", response.body().getToken());
+                        insertData(id, token);
+                    } else {
+                        if (response.code() == 400) {
+                            showMessage("Ошибка авторизации. \nПроверьте корректность данных");
+                        } else {
+                            showMessage("Ошибка");
+                        }
                     }
                 }
                 @Override
-                public void onFailure(Throwable t) {
-
-                }
+                public void onFailure(Throwable t) { }
             });
-    }
-
-    public void showResponse(String response){
-        Toast.makeText(getBaseContext(), response, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -72,6 +77,12 @@ public class SignIn extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    //Insert data to firebase realtime database
+    private void insertData(int user_id, String token){
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Users").child("User " + user_id).setValue(new Authorization(user_id, token));
     }
 
     //For show message

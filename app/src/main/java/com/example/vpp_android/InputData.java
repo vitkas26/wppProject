@@ -15,17 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import retrofit2.Call;
+import api_service.APIService;
+import api_service.APIUtils;
+import products_classes.Data;
+import products_classes.Product;
 import retrofit2.Callback;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class InputData extends AppCompatActivity {
 
     private List<String> items = new ArrayList<>();
     private static final String mainUrl = "http://212.42.106.73/api/v1/";
     Spinner inputDataSpinner;
+    APIService mAPIService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,41 +37,11 @@ public class InputData extends AppCompatActivity {
 
         inputDataSpinner = findViewById(R.id.input_data_spinner);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://212.42.106.73/api/v1/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        mAPIService = APIUtils.getAPIService();
 
+        getProduct();
 
-        IProduct iProduct = retrofit.create(IProduct.class);
-
-        Call<Product> call = iProduct.getProduct();
-
-        call.enqueue(new Callback<Product>() {
-            @Override
-            public void onResponse(Response<Product> response) {
-                if (!response.isSuccess()) {
-                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                List<Data> itemObj = response.body().getData();
-                for (Data obj: itemObj){
-                    items.add(obj.getName());
-                }
-                //Items array adapter in spinner
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
-                        android.R.layout.simple_spinner_item, items);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                inputDataSpinner.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(getBaseContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
+        //Items array adapter in spinner
         inputDataSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -82,6 +54,36 @@ public class InputData extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    //Authentication private method
+    private void getProduct(){
+        mAPIService.getProduct().enqueue(new Callback<Product>(){
+            @Override
+            public void onResponse(Response<Product> response) {
+                if (response.isSuccess()){
+                    List<Data> itemObj = response.body().getData();
+                    for (Data obj: itemObj){
+                        items.add(obj.getName());
+                    }
+                    addDataToSpinner(items);
+                } else {
+                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) { }
+        });
+    }
+
+    private void addDataToSpinner(List<String> items){
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputDataSpinner.setAdapter(adapter);
     }
 
     @Override

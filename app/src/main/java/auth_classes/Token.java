@@ -1,4 +1,4 @@
-package com.example.vpp_android;
+package auth_classes;
 
 public class Token {
     private String token;

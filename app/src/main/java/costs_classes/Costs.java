@@ -1,4 +1,4 @@
-package com.example.vpp_android;
+package costs_classes;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,4 +1,4 @@
-package com.example.vpp_android;
+package api_service;
 
 import retrofit2.GsonConverterFactory;
 import retrofit2.Retrofit;

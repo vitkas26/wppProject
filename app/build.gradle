@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -48,4 +49,6 @@ dependencies {
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.0.0-RC1'
+    //Firebase realtime database
+    implementation 'com.google.firebase:firebase-database:19.2.1'
 }
