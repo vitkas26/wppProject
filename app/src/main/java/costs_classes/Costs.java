@@ -8,6 +8,10 @@ public class Costs {
     private float stock_by_population;
     private float outlet_stock;
     private float price;
+    private float longitude;
+    private float latitude;
+    private int id;
+
 
     public float getConsumption_rate() {
         return consumption_rate;

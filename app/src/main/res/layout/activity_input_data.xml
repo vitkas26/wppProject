@@ -87,7 +87,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/price"
         android:layout_marginBottom="20dp"/>
-    <Button
+    <Button android:id="@+id/view_report"
         android:layout_width="140dp"
         android:textSize="12sp"
         android:layout_height="50dp"
