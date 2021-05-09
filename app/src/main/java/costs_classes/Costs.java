@@ -3,6 +3,7 @@ package costs_classes;
 import com.google.gson.annotations.SerializedName;
 
 public class Costs {
+    @SerializedName("body")
     private float consumption_rate;
     private float produced;
     private float stock_by_population;
@@ -10,7 +11,6 @@ public class Costs {
     private float price;
     private float longitude;
     private float latitude;
-    private int id;
 
 
     public float getConsumption_rate() {
@@ -31,5 +31,13 @@ public class Costs {
 
     public float getPrice() {
         return price;
+    }
+
+    public float getLongitude() {
+        return longitude;
+    }
+
+    public float getLatitude() {
+        return latitude;
     }
 }

@@ -29,7 +29,7 @@
         android:layout_below="@id/data_username"/>
 
     <EditText android:id="@+id/consumption_rate"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:hint="@string/consumption_rate"
         android:autofillHints="@string/consumption_rate"
         android:layout_marginTop="40dp"
@@ -39,7 +39,7 @@
         android:layout_below="@id/input_data_spinner"/>
 
     <EditText android:id="@+id/produced"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:layout_centerHorizontal="true"
         android:hint="@string/produced"
         android:autofillHints="@string/produced"
@@ -49,7 +49,7 @@
         android:layout_below="@id/consumption_rate"/>
 
     <EditText android:id="@+id/stock_by_population"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:layout_centerHorizontal="true"
         android:hint="@string/stock_by_population"
         android:autofillHints="@string/stock_by_population"
@@ -59,7 +59,7 @@
         android:layout_below="@id/produced"/>
 
     <EditText android:id="@+id/outlet_stock"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:layout_centerHorizontal="true"
         android:hint="@string/outlet_stock"
         android:autofillHints="@string/outlet_stock"
@@ -69,7 +69,7 @@
         android:layout_below="@id/stock_by_population"/>
 
     <EditText android:id="@+id/price"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:hint="@string/price"
@@ -78,7 +78,7 @@
         android:layout_below="@id/outlet_stock"
         android:autofillHints="@string/price" />
 
-    <Button
+    <Button android:id="@+id/submit_costs"
         android:layout_width="140dp"
         android:textSize="12sp"
         android:layout_height="50dp"
