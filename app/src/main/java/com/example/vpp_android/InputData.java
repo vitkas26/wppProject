@@ -117,7 +117,7 @@ public class InputData extends AppCompatActivity {
             @Override
             public void onResponse(Response<Costs> response) {
                 if (response.isSuccess()){
-                    Toast.makeText(getBaseContext(), "Success Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Данные отправлены", Toast.LENGTH_SHORT).show();
                 } else {
                     if (response.code() == 400) {
                         Toast.makeText(getBaseContext(), "400", Toast.LENGTH_SHORT).show();
@@ -168,10 +168,6 @@ public class InputData extends AppCompatActivity {
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
-            if (latitude != 0 && longitude != 0){
-                Toast.makeText(getBaseContext(), "latitude: " + latitude, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getBaseContext(), "longitude: " + longitude, Toast.LENGTH_SHORT).show();
-            }
         }else{
             gpsTracker.showSettingsAlert();
         }

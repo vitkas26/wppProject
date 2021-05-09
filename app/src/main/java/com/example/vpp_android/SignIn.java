@@ -12,7 +12,14 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.JsonObject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.FileWriter;
+import java.io.IOError;
+import java.io.IOException;
 import java.util.Objects;
 
 import api_service.APIService;
@@ -26,6 +33,8 @@ public class SignIn extends AppCompatActivity {
     EditText password;
     Button submit;
     APIService mAPIService;
+    FileWriter jsonFile;
+    JSONObject jsonObject;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

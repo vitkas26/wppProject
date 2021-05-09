@@ -7,6 +7,7 @@ import com.example.vpp_android.R;
 
 import auth_classes.Authorization;
 import costs_classes.Costs;
+import costs_classes.GetCosts;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import products_classes.Product;
@@ -17,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -45,4 +47,7 @@ public interface APIService {
                         @Field("price") Float price,
                         @Field("longitude") Float longitude,
                         @Field("latitude") Float latitude);
+
+    @GET("costs/{id}")
+    Call<GetCosts> getCosts(@Path("id") int id);
 }

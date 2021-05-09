@@ -23,7 +23,7 @@
         android:textSize="14sp"
         />
 
-    <TextView android:text="25"
+    <TextView android:text=""
         android:textSize="18sp"
         android:id="@+id/consumption_rate"
         android:layout_marginBottom="60dp"
@@ -41,7 +41,7 @@
         android:layout_alignStart="@id/produced"
         />
 
-    <TextView  android:text="25"
+    <TextView  android:text=""
         android:id="@+id/produced"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
@@ -59,7 +59,7 @@
         android:layout_alignStart="@id/stock_by_population"
         />
 
-    <TextView android:text="25"
+    <TextView android:text=""
         android:id="@+id/stock_by_population"
         android:textSize="18sp"
         android:layout_centerHorizontal="true"
@@ -77,7 +77,7 @@
         android:layout_alignStart="@id/outlet_stock"
         />
 
-    <TextView android:text="25"
+    <TextView android:text=""
         android:id="@+id/outlet_stock"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
@@ -95,7 +95,7 @@
         android:layout_alignStart="@id/price"
         />
 
-    <TextView android:text="25"
+    <TextView android:text=""
         android:id="@+id/price"
         android:layout_centerHorizontal="true"
         android:layout_width="300dp"
@@ -104,12 +104,5 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/outlet_stock"
         android:layout_marginBottom="30dp"/>
-
-    <Button android:id="@+id/view_data"
-        android:text="@string/view"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/price"/>
 
 </RelativeLayout>
