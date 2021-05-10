@@ -33,9 +33,6 @@ public interface APIService {
     @GET("products")
     Call<Product> getProduct();
 
-//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
-//    @GET("costs/1")
-//    Call<ResponseBody> getToken(@Header("Authorization") String auth);
 
     @POST("costs/{id}")
     @FormUrlEncoded

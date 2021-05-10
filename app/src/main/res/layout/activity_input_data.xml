@@ -8,94 +8,119 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-    <TextView android:id="@+id/data_username"
-        android:text="Имя пользователя"
-        android:textSize="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+            <Spinner
+                android:id="@+id/input_data_spinner"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp"/>
 
-    <Spinner
-        android:id="@+id/input_data_spinner"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_marginTop="30dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/data_username"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/consumption_rate_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/input_data_spinner"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/consumption_rate">
 
-    <EditText android:id="@+id/consumption_rate"
-        android:inputType="numberDecimal"
-        android:hint="@string/consumption_rate"
-        android:autofillHints="@string/consumption_rate"
-        android:layout_marginTop="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/input_data_spinner"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/consumption_rate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    />
 
-    <EditText android:id="@+id/produced"
-        android:inputType="numberDecimal"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/produced"
-        android:autofillHints="@string/produced"
-        android:layout_marginTop="40dp"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/consumption_rate"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText android:id="@+id/stock_by_population"
-        android:inputType="numberDecimal"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/stock_by_population"
-        android:autofillHints="@string/stock_by_population"
-        android:layout_marginTop="40dp"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/produced"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/produced_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/consumption_rate_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/produced">
 
-    <EditText android:id="@+id/outlet_stock"
-        android:inputType="numberDecimal"
-        android:layout_centerHorizontal="true"
-        android:hint="@string/outlet_stock"
-        android:autofillHints="@string/outlet_stock"
-        android:layout_marginTop="40dp"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/stock_by_population"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/produced"
+                    android:inputType="numberDecimal"/>
 
-    <EditText android:id="@+id/price"
-        android:inputType="numberDecimal"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:hint="@string/price"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_below="@id/outlet_stock"
-        android:autofillHints="@string/price" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <Button android:id="@+id/submit_costs"
-        android:layout_width="140dp"
-        android:textSize="12sp"
-        android:layout_height="50dp"
-        android:text="@string/submit"
-        android:layout_alignStart="@id/price"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/price"
-        android:layout_marginBottom="20dp"/>
-    <Button android:id="@+id/view_report"
-        android:layout_width="140dp"
-        android:textSize="12sp"
-        android:layout_height="50dp"
-        android:text="@string/view"
-        android:layout_alignEnd="@id/price"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/price"
-        android:layout_marginBottom="20dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/stock_by_population_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/produced_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/stock_by_population">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/stock_by_population"
+                    android:inputType="numberDecimal"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/outlet_stock_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stock_by_population_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/outlet_stock">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/outlet_stock"
+                    android:inputType="numberDecimal"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/price_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/outlet_stock_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:hint="@string/consumption_rate">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/price"
+                    android:inputType="numberDecimal"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/submit_costs"
+                android:layout_width="350dp"
+                android:layout_height="70dp"
+                android:layout_below="@id/price_layout"
+                android:layout_alignStart="@id/price_layout"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/submit"
+                android:textSize="12sp"/>
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

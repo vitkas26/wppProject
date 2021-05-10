@@ -29,23 +29,40 @@
     <string name="price">
         Цена, кг/сом
     </string>
+    <string name="about_app">Информация о приложении</string>
+    <string name="app_settings">Настройки</string>
+    <string name="app_menu">Меню</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 
     <!--Items strings-->
-<!--    <string-array name="Products">-->
-<!--        <item>Пшеница</item>-->
-<!--        <item>Пшеничная мука</item>-->
-<!--        <item>Макаронные изделия</item>-->
-<!--        <item>Молоко и молочные изделия</item>-->
-<!--        <item>Говядина</item>-->
-<!--        <item>Конина</item>-->
-<!--        <item>Баранина(козлятина)</item>-->
-<!--        <item>Свинина</item>-->
-<!--        <item>Мясо домашней птицы</item>-->
-<!--        <item>Растительное масло</item>-->
-<!--        <item>Сахар</item>-->
-<!--        <item>Соль</item>-->
-<!--        <item>Яйца, тыс. штук</item>-->
-<!--        <item>Рис</item>-->
-<!--        <item>Картофель</item>-->
-<!--    </string-array>-->
+    <!--    <string-array name="Products">-->
+    <!--        <item>Пшеница</item>-->
+    <!--        <item>Пшеничная мука</item>-->
+    <!--        <item>Макаронные изделия</item>-->
+    <!--        <item>Молоко и молочные изделия</item>-->
+    <!--        <item>Говядина</item>-->
+    <!--        <item>Конина</item>-->
+    <!--        <item>Баранина(козлятина)</item>-->
+    <!--        <item>Свинина</item>-->
+    <!--        <item>Мясо домашней птицы</item>-->
+    <!--        <item>Растительное масло</item>-->
+    <!--        <item>Сахар</item>-->
+    <!--        <item>Соль</item>-->
+    <!--        <item>Яйца, тыс. штук</item>-->
+    <!--        <item>Рис</item>-->
+    <!--        <item>Картофель</item>-->
+    <!--    </string-array>-->
 </resources>

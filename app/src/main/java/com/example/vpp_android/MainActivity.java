@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MainActivity extends AppCompatActivity {
 
     Button signIn;
-    Button inputData;
+    FloatingActionButton inputData;
     Button viewData;
 
     @Override
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.sign_in_btn);
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
+
+        Toast.makeText(getBaseContext(), "UserID: " + getIntent()
+                .getStringExtra("EXTRA_SESSION_ID"), Toast.LENGTH_SHORT).show();
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override

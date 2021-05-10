@@ -2,6 +2,7 @@ package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +18,15 @@ import com.google.gson.JsonObject;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOError;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Objects;
 
 import api_service.APIService;
@@ -29,6 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SignIn extends AppCompatActivity {
+    private static String filePath = "src/main/java/auth_classes/user_id.json";
     EditText login;
     EditText password;
     Button submit;
@@ -65,6 +73,12 @@ public class SignIn extends AppCompatActivity {
                         int id = response.body().getUserId();
                         String token = String.format("Token %s", response.body().getToken());
                         insertData(id, token);
+                        try {
+                            writeJson(id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        startActivity(String.valueOf(id));
                     } else {
                         if (response.code() == 400) {
                             showMessage("Ошибка авторизации. \nПроверьте корректность данных");
@@ -76,6 +90,16 @@ public class SignIn extends AppCompatActivity {
                 @Override
                 public void onFailure(Throwable t) { }
             });
+    }
+
+    private void startActivity(String sessionId){
+        Intent intent = new Intent(getBaseContext(), MainActivity.class);
+        intent.putExtra("EXTRA_SESSION_ID", sessionId);
+        startActivity(intent);
+    }
+
+    private void writeJson(int userId) throws JSONException {
+
     }
 
     @Override

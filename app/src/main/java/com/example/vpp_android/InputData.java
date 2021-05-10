@@ -1,6 +1,7 @@
 package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -15,6 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +41,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class InputData extends AppCompatActivity {
-
     private List<String> items = new ArrayList<>();
     private int costsId;
     Spinner inputDataSpinner;
@@ -45,11 +48,11 @@ public class InputData extends AppCompatActivity {
     private GpsTracker gpsTracker;
     int productId;
     Button submitCosts;
-    EditText consumption_rate;
-    EditText produced;
-    EditText stock_by_population;
-    EditText outlet_stock;
-    EditText price;
+    TextInputEditText consumption_rate;
+    TextInputEditText produced;
+    TextInputEditText stock_by_population;
+    TextInputEditText outlet_stock;
+    TextInputEditText price;
     double latitude;
     double longitude;
 
@@ -77,10 +80,6 @@ public class InputData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getLocation(v);
-                setCosts(costsId,Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
-                        Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
-                        Float.parseFloat(price.getText().toString()),
-                        (float) longitude, (float) latitude);
             }
         });
 
@@ -97,14 +96,6 @@ public class InputData extends AppCompatActivity {
 
             }
         });
-
-        Button view_report = findViewById(R.id.view_report);
-        view_report.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getLocation(v);
-            }
-        });
     }
 
     private void setCosts(int id, float consumption_rate, float produced,
@@ -117,12 +108,12 @@ public class InputData extends AppCompatActivity {
             @Override
             public void onResponse(Response<Costs> response) {
                 if (response.isSuccess()){
-                    Toast.makeText(getBaseContext(), "Данные отправлены", Toast.LENGTH_SHORT).show();
+                    showMessage("Данные отправлены");
                 } else {
                     if (response.code() == 400) {
                         Toast.makeText(getBaseContext(), "400", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getBaseContext(), "Error Code: " + response.code(), Toast.LENGTH_SHORT).show();
+                        showMessage("Error code: " + response.code());
                     }
                 }
 
@@ -168,6 +159,14 @@ public class InputData extends AppCompatActivity {
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
+            if (latitude == 0 || longitude == 0){
+                showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
+            }else{
+                setCosts(costsId,Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
+                        Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
+                        Float.parseFloat(price.getText().toString()),
+                        (float) longitude, (float) latitude);
+            }
         }else{
             gpsTracker.showSettingsAlert();
         }
