@@ -3,6 +3,7 @@ package com.example.vpp_android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,9 +35,10 @@ import api_service.APIUtils;
 import auth_classes.Authorization;
 import retrofit2.Callback;
 import retrofit2.Response;
+import savingdata_class.Account;
 
 public class SignIn extends AppCompatActivity {
-    private static String filePath = "src/main/java/auth_classes/user_id.json";
+    SharedPreferences settings;
     EditText login;
     EditText password;
     Button submit;
@@ -48,7 +50,6 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
         login = findViewById(R.id.sign_in_login);
         password = findViewById(R.id.sing_in_password);
         submit = findViewById(R.id.sign_in_btn);
@@ -73,12 +74,8 @@ public class SignIn extends AppCompatActivity {
                         int id = response.body().getUserId();
                         String token = String.format("Token %s", response.body().getToken());
                         insertData(id, token);
-                        try {
-                            writeJson(id);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        startActivity(String.valueOf(id));
+                        saveSharedPreferences(id);
+                        startActivity();
                     } else {
                         if (response.code() == 400) {
                             showMessage("Ошибка авторизации. \nПроверьте корректность данных");
@@ -92,14 +89,9 @@ public class SignIn extends AppCompatActivity {
             });
     }
 
-    private void startActivity(String sessionId){
+    private void startActivity(){
         Intent intent = new Intent(getBaseContext(), MainActivity.class);
-        intent.putExtra("EXTRA_SESSION_ID", sessionId);
         startActivity(intent);
-    }
-
-    private void writeJson(int userId) throws JSONException {
-
     }
 
     @Override
@@ -116,6 +108,14 @@ public class SignIn extends AppCompatActivity {
     private void insertData(int user_id, String token){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Users").child("User " + user_id).setValue(new Authorization(user_id, token));
+    }
+
+    //Save user id
+    private void saveSharedPreferences(int id){
+        SharedPreferences settings = getSharedPreferences(Account.getFILE(), MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt(Account.getUserId(), id);
+        editor.apply();
     }
 
     //For show message

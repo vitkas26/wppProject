@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     Button signIn;
     FloatingActionButton inputData;
     Button viewData;
+    private String PREFS_FILE = "Account";
+    private String PREF_NAME = "user_id";
+    SharedPreferences settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.sign_in_btn);
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
+
+        getUser();
 
         Toast.makeText(getBaseContext(), "UserID: " + getIntent()
                 .getStringExtra("EXTRA_SESSION_ID"), Toast.LENGTH_SHORT).show();
@@ -51,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(v, ViewData.class);
             }
         });
+    }
+
+    public void getUser(){
+        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
+        int name = settings.getInt(PREF_NAME,0);
+        Toast.makeText(getBaseContext(), "ID:" + name, Toast.LENGTH_SHORT).show();
     }
 
     //callback intent signIn activity
