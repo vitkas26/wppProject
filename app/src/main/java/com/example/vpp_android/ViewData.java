@@ -2,6 +2,8 @@ package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,7 +106,9 @@ public class ViewData extends AppCompatActivity{
     }
 
     public void getCosts(){
-        mAPIService.getCosts(costsId).enqueue(new Callback<GetCosts>() {
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        String spToken = sp.getString("user_token", "");
+        mAPIService.getCosts(costsId, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
                 if (response.isSuccess()){

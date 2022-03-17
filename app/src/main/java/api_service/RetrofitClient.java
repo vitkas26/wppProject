@@ -1,6 +1,7 @@
 package api_service;
 
 import com.example.vpp_android.InputData;
+import com.example.vpp_android.SignIn;
 
 import java.io.IOException;
 
@@ -13,13 +14,13 @@ import retrofit2.Retrofit;
 public class RetrofitClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client;
+    private static SignIn sign;
 
     public static Retrofit getClient(String baseUrl){
        client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
                 Request newRequest  = chain.request().newBuilder()
-                        .addHeader("Authorization", "Token " + "f581c86a98d9b9d059f0a7cfd6161eb6721e4e7a")
                         .build();
                 return chain.proceed(newRequest);
             }

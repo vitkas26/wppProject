@@ -45,6 +45,7 @@ public class SignIn extends AppCompatActivity {
     APIService mAPIService;
     FileWriter jsonFile;
     JSONObject jsonObject;
+    public String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,9 +73,8 @@ public class SignIn extends AppCompatActivity {
                     if (response.isSuccess()){
                         showMessage("Вход выполнен");
                         int id = response.body().getUserId();
-                        String token = String.format("Token %s", response.body().getToken());
-                        insertData(id, token);
-                        saveSharedPreferences(id);
+                        token = String.format("Token %s", response.body().getToken());
+                        saveSharedPreferences(token, username);
                         startActivity();
                     } else {
                         if (response.code() == 400) {
@@ -111,11 +111,12 @@ public class SignIn extends AppCompatActivity {
     }
 
     //Save user id
-    private void saveSharedPreferences(int id){
+    private void saveSharedPreferences(String token, String name){
         SharedPreferences settings = getSharedPreferences(Account.getFILE(), MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt(Account.getUserId(), id);
-        editor.apply();
+        editor.putString(Account.getUserToken(), token);
+        editor.putString(Account.getUserName(), name);
+        editor.commit();
     }
 
     //For show message

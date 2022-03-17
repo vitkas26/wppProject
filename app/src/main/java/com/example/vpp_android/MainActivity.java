@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.transition.Visibility;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
     Button signIn;
     FloatingActionButton inputData;
     Button viewData;
+    TextView userText;
     private String PREFS_FILE = "Account";
     private String PREF_NAME = "user_id";
     SharedPreferences settings;
+    SignIn sign = new SignIn();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +37,18 @@ public class MainActivity extends AppCompatActivity {
         signIn = findViewById(R.id.sign_in_btn);
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
+        userText = findViewById(R.id.sign_user);
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        String name = sp.getString("user_name", "");
 
-        getUser();
+        if (name != ""){
+            signIn.setVisibility(View.GONE);
+            userText.setText(name);
+        }else{
+            signIn.setVisibility(View.VISIBLE);
+            userText.setVisibility(View.GONE);
+        }
 
-        Toast.makeText(getBaseContext(), "UserID: " + getIntent()
-                .getStringExtra("EXTRA_SESSION_ID"), Toast.LENGTH_SHORT).show();
 
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,12 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(v, ViewData.class);
             }
         });
-    }
-
-    public void getUser(){
-        settings = getSharedPreferences(PREFS_FILE, MODE_PRIVATE);
-        int name = settings.getInt(PREF_NAME,0);
-        Toast.makeText(getBaseContext(), "ID:" + name, Toast.LENGTH_SHORT).show();
     }
 
     //callback intent signIn activity

@@ -21,7 +21,6 @@ import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-
 public interface APIService {
     //Login to service
     @POST("login")
@@ -37,6 +36,7 @@ public interface APIService {
     @POST("costs/{id}")
     @FormUrlEncoded
     Call<Costs> setCost(@Path("id") int id,
+                        @Header("Authorization") String token,
                         @Field("consumption_rate") Float consumption_rate,
                         @Field("produced") Float produced,
                         @Field("stock_by_population") Float stock_by_population,
@@ -46,5 +46,6 @@ public interface APIService {
                         @Field("latitude") Float latitude);
 
     @GET("costs/{id}")
-    Call<GetCosts> getCosts(@Path("id") int id);
+    Call<GetCosts> getCosts(@Path("id") int id,
+                            @Header("Authorization") String token);
 }

@@ -5,6 +5,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.Menu;
@@ -98,10 +100,12 @@ public class InputData extends AppCompatActivity {
         });
     }
 
-    private void setCosts(int id, float consumption_rate, float produced,
+    private void setCosts(int id, String token, float consumption_rate, float produced,
                           float stock_by_population, float outlet_stock,
                           float price, float longitude, float latitude){
-        mAPIService.setCost(id,consumption_rate, produced,
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        String spToken = sp.getString("user_token", "");
+        mAPIService.setCost(id, spToken, consumption_rate, produced,
                             stock_by_population,
                             outlet_stock, price,
                             longitude, latitude).enqueue(new Callback<Costs>(){
@@ -155,14 +159,17 @@ public class InputData extends AppCompatActivity {
     }
 
     private void getLocation(View view){
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        String spToken = sp.getString("user_token", "");
         gpsTracker = new GpsTracker(InputData.this);
+
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
             if (latitude == 0 || longitude == 0){
                 showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
             }else{
-                setCosts(costsId,Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
+                setCosts(costsId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
                         Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
                         Float.parseFloat(price.getText().toString()),
                         (float) longitude, (float) latitude);
