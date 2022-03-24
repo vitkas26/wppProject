@@ -38,19 +38,16 @@ import retrofit2.Response;
 import savingdata_class.Account;
 
 public class SignIn extends AppCompatActivity {
-    SharedPreferences settings;
     EditText login;
     EditText password;
     Button submit;
     APIService mAPIService;
-    FileWriter jsonFile;
-    JSONObject jsonObject;
     public String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         login = findViewById(R.id.sign_in_login);
         password = findViewById(R.id.sing_in_password);
         submit = findViewById(R.id.sign_in_btn);

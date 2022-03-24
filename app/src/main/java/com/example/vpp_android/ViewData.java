@@ -75,7 +75,7 @@ public class ViewData extends AppCompatActivity{
         });
 
         //Add back button to Action Button
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     //Authentication private method

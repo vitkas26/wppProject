@@ -62,7 +62,7 @@ public class InputData extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_data);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         mAPIService = APIUtils.getAPIService();
 
@@ -78,12 +78,7 @@ public class InputData extends AppCompatActivity {
         checkLocationPermission();
 
         //Listener for post costs data
-        submitCosts.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getLocation(v);
-            }
-        });
+        submitCosts.setOnClickListener(v -> getLocation(v));
 
         //Items array adapter in spinner
         inputDataSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
