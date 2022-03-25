@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             userText.setVisibility(View.GONE);
         }
 
-
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(v, ViewData.class);
             }
         });
+
+
     }
 
     //callback intent signIn activity

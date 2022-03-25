@@ -105,9 +105,6 @@ public class SessionManager {
         _context.startActivity(i);
     }
 
-    /**
-     * Quick check for login
-     **/
     // Get Login State
     public boolean isLoggedIn() {
         return pref.getBoolean(IS_LOGIN, false);
