@@ -29,7 +29,7 @@
     <string name="price">
         Цена, кг/сом
     </string>
-    <string name="about_app">Информация о приложении</string>
+    <string name="about_app">Информация о пользователе</string>
     <string name="app_settings">Настройки</string>
     <string name="app_menu">Меню</string>
     <!-- Preference Titles -->

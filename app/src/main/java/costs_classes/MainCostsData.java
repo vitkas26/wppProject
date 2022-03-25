@@ -9,6 +9,7 @@ public class MainCostsData {
     String district;
     int population;
     String worker;
+    String phone;
     @SerializedName("costs")
     private List<CostsData> costsData;
 
@@ -26,6 +27,10 @@ public class MainCostsData {
 
     public String getWorker() {
         return worker;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public List<CostsData> getCostsData() {

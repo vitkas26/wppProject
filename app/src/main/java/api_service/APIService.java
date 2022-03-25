@@ -8,6 +8,7 @@ import com.example.vpp_android.R;
 import auth_classes.Authorization;
 import costs_classes.Costs;
 import costs_classes.GetCosts;
+import costs_classes.MainCostsData;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import products_classes.Product;
@@ -31,6 +32,10 @@ public interface APIService {
     //getProduct
     @GET("products")
     Call<Product> getProduct();
+
+    //getWorkerInfo
+    @GET("costs")
+    Call<GetCosts> getCosts(@Header("Authorization") String token);
 
 
     @POST("costs/{id}")

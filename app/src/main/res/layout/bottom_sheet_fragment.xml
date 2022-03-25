@@ -18,10 +18,12 @@
         android:id="@+id/menuAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_margin="8dp"
         android:background="@drawable/ic_info"
         android:text="@string/about_app"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/menuSettings"
@@ -30,7 +32,16 @@
         android:layout_margin="8dp"
         android:icon="@drawable/ic_settings"
         android:text="@string/app_settings"
-        android:textSize="20sp" />
+        android:clickable="true"
+        android:textSize="20sp"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/infoMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="14sp"/>
 
     <Button
         android:id="@+id/logout"

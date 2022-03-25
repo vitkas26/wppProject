@@ -106,8 +106,9 @@ public class ViewData extends AppCompatActivity{
     }
 
     public void getCosts(){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
+            SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+            String spToken = sp.getString("user_token", "");
+
         mAPIService.getCosts(costsId, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
