@@ -6,6 +6,8 @@ import com.example.vpp_android.InputData;
 import com.example.vpp_android.R;
 
 import auth_classes.Authorization;
+import auth_classes.PhoneNumber;
+import auth_classes.Token;
 import costs_classes.Costs;
 import costs_classes.GetCosts;
 import costs_classes.MainCostsData;
@@ -28,6 +30,16 @@ public interface APIService {
     @FormUrlEncoded
     Call<Authorization> authUser(@Field("username") String username,
                                  @Field("password") String password);
+
+    //Send tel to server
+    @POST("tel")
+    @FormUrlEncoded
+    Call<PhoneNumber> sendTel(@Field("tel") String phoneNumber);
+
+    //Send sms to server
+    @POST("sms")
+    @FormUrlEncoded
+    Call<Token> sendSms(@Field("sms_code") String smsCode);
 
     //getProduct
     @GET("products")

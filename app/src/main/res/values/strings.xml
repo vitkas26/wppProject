@@ -60,6 +60,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="oauth_number_text_view">Введите телефонный номер</string>
+    <string name="country_code">+996</string>
 
     <!--Items strings-->
     <!--    <string-array name="Products">-->
