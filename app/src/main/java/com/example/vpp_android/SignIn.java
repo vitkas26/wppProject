@@ -47,7 +47,6 @@ public class SignIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         login = findViewById(R.id.sign_in_login);
         password = findViewById(R.id.sing_in_password);
         submit = findViewById(R.id.sign_in_btn);

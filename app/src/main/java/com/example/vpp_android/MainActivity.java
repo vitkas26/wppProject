@@ -82,20 +82,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(bottomAppBar);
     }
 
-
-    /* Get Menu Fragment on menu button click
-      @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                drawerLayout.openDrawer(Gravity.LEFT);
-                return true;
-        }
-        return false;
-    }
-*/
-
-    //callback intent signIn activity
+        //callback intent signIn activity
     public void startActivity(View view, Class<? extends Activity> activity){
         try {
             Intent signInIntent = new Intent(getApplicationContext(), activity);
