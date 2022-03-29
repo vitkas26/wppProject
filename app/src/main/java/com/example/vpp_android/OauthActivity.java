@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,18 +38,31 @@ public class OauthActivity extends AppCompatActivity {
 
     private void sendButtonListener() {
         sendButton.setOnClickListener(v->{
-            Intent intent = new Intent(this, GetSmsActivity.class);
-            intent.putExtra(GetSmsActivity.PHONE_NUMBER_TAG,phoneNumberEditText.getText());
-            sendPhoneToServer(intent);
+            if(checkPhoneSize()){
+                Intent intent = new Intent(this, GetSmsActivity.class);
+                intent.putExtra(GetSmsActivity.PHONE_NUMBER_TAG,phoneNumberEditText.getText());
+                sendPhoneToServer(intent);
+            }else {
+                Toast.makeText(this, "Not valid number", Toast.LENGTH_SHORT).show();
+            }
+            
         });
     }
 
-    private void sendPhoneToServer(Intent intent) {
-        startActivity(intent);
+    private boolean checkPhoneSize() {
+        if (phoneNumberEditText.getText().length() == 13){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
 
+    private void sendPhoneToServer(Intent intent) {
         mApiService.sendTel(phoneNumberEditText.getText().toString()).enqueue(new Callback<PhoneNumber>() {
             @Override
             public void onResponse(Response<PhoneNumber> response) {
+                Toast.makeText(OauthActivity.this, " " + response.message(), Toast.LENGTH_SHORT).show();
                 if(response.isSuccess()){
                     startActivity(intent);
                 }

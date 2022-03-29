@@ -14,11 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Vppandroid">
         <activity android:name=".History" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ViewData" />
-        <activity android:name=".InputData" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".OauthActivity"
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GetSmsActivity"/>
+        <activity android:name=".ViewData" />
+        <activity android:name=".InputData" />
+        <activity android:name=".OauthActivity" />
+        <activity android:name=".GetSmsActivity" />
 
         <meta-data
             android:name="firebase_performance_logcat_enabled"

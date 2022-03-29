@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,8 @@ public class GetSmsActivity extends AppCompatActivity {
     private EditText secondNumberEditText;
     private EditText thirdNumberEditText;
     private EditText fourthNumberEditText;
+    private TextView fifthNumberEditText;
+    private TextView sixthNumberEditText;
     private Button sendButton;
     private String smsCode;
     private String phoneNumber;
@@ -46,6 +49,8 @@ public class GetSmsActivity extends AppCompatActivity {
         secondNumberEditText = findViewById(R.id.get_sms_activity__second_number);
         thirdNumberEditText = findViewById(R.id.get_sms_activity__third_number);
         fourthNumberEditText = findViewById(R.id.get_sms_activity__fourth_number);
+        fifthNumberEditText = findViewById(R.id.get_sms_activity__fifth_number);
+        sixthNumberEditText = findViewById(R.id.get_sms_activity__sixth_number);
         sendButton = findViewById(R.id.get_sms_activity__send_button);
         setCursorPosition();
     }
@@ -118,8 +123,44 @@ public class GetSmsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (fourthNumberEditText.getText().length() > 0) {
-                    firstNumberEditText.requestFocus();
+                    fifthNumberEditText.requestFocus();
                 }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        fifthNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (fifthNumberEditText.getText().length() > 0) {
+                    sixthNumberEditText.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        sixthNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    sendButton.requestFocus();
             }
 
             @Override
@@ -133,35 +174,47 @@ public class GetSmsActivity extends AppCompatActivity {
         smsCode = firstNumberEditText.getText() +
                 secondNumberEditText.getText().toString() +
                 thirdNumberEditText.getText().toString() +
-                fourthNumberEditText.getText().toString();
-        if (smsCode.length() == 4) {
+                fourthNumberEditText.getText().toString() +
+                fifthNumberEditText.getText().toString() +
+                sixthNumberEditText.getText().toString();
+        if (smsCode.length() == 6) {
         } else {
             showMessage("Не достаточно символов в коде");
         }
     }
 
     private void initListeners() {
-        firstNumberEditText.setOnClickListener(v-> {
-            if(!firstNumberEditText.getText().toString().equals("")){
+        firstNumberEditText.setOnClickListener(v -> {
+            if (!firstNumberEditText.getText().toString().equals("")) {
                 firstNumberEditText.setText("");
             }
         });
-        secondNumberEditText.setOnClickListener(v-> {
-            if(!secondNumberEditText.getText().toString().equals("")){
+        secondNumberEditText.setOnClickListener(v -> {
+            if (!secondNumberEditText.getText().toString().equals("")) {
                 secondNumberEditText.setText("");
             }
         });
-        thirdNumberEditText.setOnClickListener(v-> {
-            if(!thirdNumberEditText.getText().toString().equals("")){
+        thirdNumberEditText.setOnClickListener(v -> {
+            if (!thirdNumberEditText.getText().toString().equals("")) {
                 thirdNumberEditText.setText("");
             }
         });
-        fourthNumberEditText.setOnClickListener(v-> {
-            if(!fourthNumberEditText.getText().toString().equals("")){
+        fourthNumberEditText.setOnClickListener(v -> {
+            if (!fourthNumberEditText.getText().toString().equals("")) {
                 fourthNumberEditText.setText("");
             }
         });
 
+        sixthNumberEditText.setOnClickListener(v -> {
+            if (!sixthNumberEditText.getText().toString().equals("")) {
+                sixthNumberEditText.setText("");
+            }
+        });
+        fifthNumberEditText.setOnClickListener(v -> {
+            if (!fifthNumberEditText.getText().toString().equals("")) {
+                fifthNumberEditText.setText("");
+            }
+        });
 
         sendButton.setOnClickListener(v -> sendSmsRequest());
     }
