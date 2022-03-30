@@ -26,14 +26,17 @@ import costs_classes.CostsData;
 import costs_classes.GetCosts;
 import costs_classes.MainCostsData;
 import products_classes.Data;
+import products_classes.DataLoc;
+import products_classes.GetCostsLoc;
 import products_classes.Product;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewData extends AppCompatActivity{
 
-    Spinner costsItem;
+    Spinner costsItem, costsItemRegion;
     private List<String> items = new ArrayList<>();
+    private List<String> itemsLoc = new ArrayList<>();
     Button viewData;
     TextView consumption_rate;
     TextView produced;
@@ -41,13 +44,14 @@ public class ViewData extends AppCompatActivity{
     TextView outlet_stock;
     TextView price;
     APIService mAPIService;
-    int costsId;
+    int costsId, costsIdReg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
         costsItem = findViewById(R.id.costItems);
+        costsItemRegion = findViewById(R.id.costItemsRegion);
         viewData = findViewById(R.id.view_data);
         consumption_rate = findViewById(R.id.consumption_rate);
         produced = findViewById(R.id.produced);
@@ -57,7 +61,23 @@ public class ViewData extends AppCompatActivity{
 
         mAPIService = APIUtils.getAPIService();
 
+        getRegion();
         getProduct();
+
+
+        //Items array adapter in spinner
+        costsItemRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String itemPos = String.valueOf(position);
+                costsIdReg = Integer.parseInt(itemPos);
+                costsIdReg++;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //Items array adapter in spinner
         costsItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -76,6 +96,28 @@ public class ViewData extends AppCompatActivity{
 
         //Add back button to Action Button
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    }
+
+    //Authentication private method
+    private void getRegion(){
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        String spToken = sp.getString("user_token", "");
+        mAPIService.getLoc(spToken).enqueue(new Callback<GetCostsLoc>(){
+            @Override
+            public void onResponse(Response<GetCostsLoc> response) {
+                if (response.isSuccess()){
+                    List<DataLoc> itemObjLoc = response.body().getData();
+                    for (DataLoc obj: itemObjLoc){
+                        itemsLoc.add(obj.getName());
+                    }
+                    addDataToSpinnerRegion(itemsLoc);
+                } else {
+                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) { }
+        });
     }
 
     //Authentication private method
@@ -98,12 +140,20 @@ public class ViewData extends AppCompatActivity{
         });
     }
 
+    private void addDataToSpinnerRegion(List<String> itemsLoc){
+        ArrayAdapter<String> adapterReg = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, itemsLoc);
+        adapterReg.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        costsItemRegion.setAdapter(adapterReg);
+    }
+
     private void addDataToSpinner(List<String> items){
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         costsItem.setAdapter(adapter);
     }
+
 
     public void getCosts(){
         SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);

@@ -6,13 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ViewData">
 
+
+    <Spinner
+        android:id="@+id/costItemsRegion"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="60dp" />
+
     <Spinner
         android:id="@+id/costItems"
-        android:layout_centerHorizontal="true"
         android:layout_width="300dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="60dp"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="60dp" />
 
     <TextView
         android:layout_width="190dp"
@@ -23,15 +32,16 @@
         android:textSize="14sp"
         />
 
-    <TextView android:text=""
-        android:textSize="18sp"
+    <TextView
         android:id="@+id/consumption_rate"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
         android:layout_width="300dp"
         android:layout_height="30dp"
-        android:layout_below="@id/costItems"/>
+        android:layout_below="@id/costItems"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="60dp"
+        android:text=""
+        android:textSize="18sp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -9,4 +9,5 @@ public class GetCosts {
     public MainCostsData getMainCostsData() {
         return mainCostsData;
     }
+
 }

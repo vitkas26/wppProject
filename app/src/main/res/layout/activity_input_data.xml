@@ -15,10 +15,10 @@
 
             <Spinner
                 android:id="@+id/input_data_spinner"
-                android:layout_width="300dp"
+                android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"/>
+                android:layout_marginTop="40dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/consumption_rate_layout"
@@ -111,11 +111,18 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/input_location_spinner"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/price_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
             <Button
                 android:id="@+id/submit_costs"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
-                android:layout_below="@id/price_layout"
+                android:layout_below="@id/input_location_spinner"
                 android:layout_alignStart="@id/price_layout"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"

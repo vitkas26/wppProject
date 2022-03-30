@@ -3,6 +3,7 @@ package api_service;
 import auth_classes.Authorization;
 import costs_classes.Costs;
 import costs_classes.GetCosts;
+import products_classes.GetCostsLoc;
 import products_classes.Product;
 
 import retrofit2.Call;
@@ -23,10 +24,15 @@ public interface APIService {
     @GET("products")
     Call<Product> getProduct();
 
+    @GET("districts")
+    Call<GetCostsLoc> getLoc(
+            @Header("Authorization") String token);
 
-    @POST("costs/{id}")
+
+    @POST("costs/{location}/{id}")
     @FormUrlEncoded
-    Call<Costs> setCost(@Path("id") int id,
+    Call<Costs> setCost(@Path("location") int location,
+                        @Path("id") int id,
                         @Header("Authorization") String token,
                         @Field("consumption_rate") Float consumption_rate,
                         @Field("produced") Float produced,
@@ -39,4 +45,5 @@ public interface APIService {
     @GET("costs/{id}")
     Call<GetCosts> getCosts(@Path("id") int id,
                             @Header("Authorization") String token);
+
 }
