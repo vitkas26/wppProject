@@ -77,9 +77,8 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
 
         //set action to menuAbout get user info
         menuAbout.setOnClickListener(v -> {
-//            String tokenAddHeader = "Token " + token;
-            String tokenAddHeader = "Token 8454f495e774b26e268551e80dcc70598f7de80e";
             //make request to get user data
+            String tokenAddHeader = "Token " + token;
             mApiService.getEmployee(tokenAddHeader).enqueue(new Callback<DataProfile>() {
                 @Override
                 public void onResponse(Response<DataProfile> response) {
