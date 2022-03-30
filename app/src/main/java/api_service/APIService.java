@@ -42,8 +42,9 @@ public interface APIService {
                         @Field("longitude") Float longitude,
                         @Field("latitude") Float latitude);
 
-    @GET("costs/{id}")
-    Call<GetCosts> getCosts(@Path("id") int id,
+    @GET("costs/{location}/{id}")
+    Call<GetCosts> getCosts(@Path("location") int location,
+                            @Path("id") int id,
                             @Header("Authorization") String token);
 
 }

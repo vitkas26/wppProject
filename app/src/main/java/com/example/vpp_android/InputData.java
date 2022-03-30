@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,7 @@ public class InputData extends AppCompatActivity {
     TextInputEditText stock_by_population;
     TextInputEditText outlet_stock;
     TextInputEditText price;
+    private String spToken;
 
     double latitude;
     double longitude;
@@ -68,6 +70,9 @@ public class InputData extends AppCompatActivity {
         stock_by_population = findViewById(R.id.stock_by_population);
         outlet_stock = findViewById(R.id.outlet_stock);
         price = findViewById(R.id.price);
+
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        spToken = sp.getString("user_token", "");
 
 
         getProduct();
@@ -105,18 +110,16 @@ public class InputData extends AppCompatActivity {
         });
     }
 
-    private void setCosts(int location,int id, String token, float consumption_rate, float produced,
+    private void setCosts(int costsIdLoc,int id, String token, float consumption_rate, float produced,
                           float stock_by_population, float outlet_stock,
                           float price, float longitude, float latitude){
-
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
-        mAPIService.setCost(location ,id, spToken, consumption_rate, produced,
+        mAPIService.setCost(costsIdLoc ,id, spToken, consumption_rate, produced,
                             stock_by_population,
                             outlet_stock, price,
                             longitude, latitude).enqueue(new Callback<Costs>(){
             @Override
             public void onResponse(Response<Costs> response) {
+                Log.d("location", "onResponse: " + response.raw());
                 if (response.isSuccess()){
                     showMessage("Данные отправлены");
                 } else {
@@ -134,8 +137,6 @@ public class InputData extends AppCompatActivity {
     }
 
     private void getLocSpinner(){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
         mAPIService.getLoc(spToken).enqueue(new Callback<GetCostsLoc>(){
             @Override
             public void onResponse(Response<GetCostsLoc> response) {
@@ -144,7 +145,7 @@ public class InputData extends AppCompatActivity {
                     for (DataLoc obj: itemLoc){
                         itemsLoc.add(obj.getName());
                     }
-                    location = itemLoc.get(0).getId();
+                    //location = itemLoc.get(0).getId();
                     addDataLocSpinner(itemsLoc);
                 } else {
                     Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
@@ -187,17 +188,14 @@ public class InputData extends AppCompatActivity {
     }
 
     private void getLocation(View view){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
         gpsTracker = new GpsTracker(InputData.this);
-
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
             if (latitude == 0 || longitude == 0){
                 showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
             }else{
-                setCosts(location, costsId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
+                setCosts(costsIdLoc, costsId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
                         Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
                         Float.parseFloat(price.getText().toString()),
                         (float) longitude, (float) latitude);

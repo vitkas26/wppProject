@@ -45,6 +45,7 @@ public class ViewData extends AppCompatActivity{
     TextView price;
     APIService mAPIService;
     int costsId, costsIdReg;
+    private String spToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +60,13 @@ public class ViewData extends AppCompatActivity{
         outlet_stock = findViewById(R.id.outlet_stock);
         price = findViewById(R.id.price);
 
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        spToken = sp.getString("user_token", "");
+
         mAPIService = APIUtils.getAPIService();
 
         getRegion();
         getProduct();
-
 
         //Items array adapter in spinner
         costsItemRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -72,6 +75,8 @@ public class ViewData extends AppCompatActivity{
                 String itemPos = String.valueOf(position);
                 costsIdReg = Integer.parseInt(itemPos);
                 costsIdReg++;
+                getCosts(position);
+                Toast.makeText(getBaseContext(), "Region:" + costsIdReg, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -83,10 +88,12 @@ public class ViewData extends AppCompatActivity{
         costsItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String itemPos = String.valueOf(position);
-                costsId = Integer.parseInt(itemPos);
-                costsId++;
-                getCosts();
+//                String itemPos = String.valueOf(position);
+//                costsId = Integer.parseInt(itemPos);
+//                costsId = 0;
+//                costsId = ++position;
+                getCosts(position);
+                Toast.makeText(getBaseContext(), "Item" + position, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -100,8 +107,6 @@ public class ViewData extends AppCompatActivity{
 
     //Authentication private method
     private void getRegion(){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
         mAPIService.getLoc(spToken).enqueue(new Callback<GetCostsLoc>(){
             @Override
             public void onResponse(Response<GetCostsLoc> response) {
@@ -155,21 +160,20 @@ public class ViewData extends AppCompatActivity{
     }
 
 
-    public void getCosts(){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
-        mAPIService.getCosts(costsId, spToken).enqueue(new Callback<GetCosts>() {
+    public void getCosts(int position){
+        mAPIService.getCosts(costsIdReg, position, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
                 if (response.isSuccess()){
                     List<CostsData> costsData = response.body().getMainCostsData().getCostsData();
-                    for (CostsData item: costsData){
-                        consumption_rate.setText(String.valueOf(item.getConsumption_rate()));
-                        produced.setText(String.valueOf(item.getProduced()));
-                        stock_by_population.setText(String.valueOf(item.getStock_by_population()));
-                        outlet_stock.setText(String.valueOf(item.getOutlet_stock()));
-                        price.setText(String.valueOf(item.getPrice()));
-                    }
+                        consumption_rate.setText(String.valueOf(costsData.get(0).getConsumption_rate()));
+                        produced.setText(String.valueOf(costsData.get(0).getProduced()));
+                        stock_by_population.setText(String.valueOf(costsData.get(0).getStock_by_population()));
+                        outlet_stock.setText(String.valueOf(costsData.get(0).getOutlet_stock()));
+                        price.setText(String.valueOf(costsData.get(0).getPrice()));
+                        Toast.makeText(getBaseContext(), "location:" + costsIdReg, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "position:" + position, Toast.LENGTH_SHORT).show();
+
                 }else{
                     showMessage("Error code: " + response.code());
                 }
