@@ -1,27 +1,23 @@
 package api_service;
 
-import android.renderscript.ScriptGroup;
-
-import com.example.vpp_android.InputData;
-import com.example.vpp_android.R;
+import com.example.vpp_android.districts.DataDistricts;
 
 import auth_classes.Authorization;
+import auth_classes.PhoneNumber;
+import auth_classes.Token;
 import costs_classes.Costs;
 import costs_classes.GetCosts;
-import costs_classes.MainCostsData;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import products_classes.Product;
 
+import profile.DataProfile;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Headers;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+
 public interface APIService {
     //Login to service
     @POST("login")
@@ -29,18 +25,33 @@ public interface APIService {
     Call<Authorization> authUser(@Field("username") String username,
                                  @Field("password") String password);
 
+    //Send tel to server
+    @POST("send_otp_sms")
+    @FormUrlEncoded
+    Call<PhoneNumber> sendTel(@Field("phone_number") String phoneNumber);
+
+    //Send sms to server
+    @POST("login_by_otp")
+    @FormUrlEncoded
+    Call<Token> sendSms(@Field("otp_code") String smsCode);
+
     //getProduct
     @GET("products")
     Call<Product> getProduct();
 
+    //getDistricts
+    @GET("com/example/vpp_android/districts")
+    Call<DataDistricts> getDistricts(@Header("Authorization") String token);
+
     //getWorkerInfo
-    @GET("costs")
-    Call<GetCosts> getCosts(@Header("Authorization") String token);
+    @GET("profiles")
+    Call<DataProfile> getEmployee(@Header("Authorization") String token);
 
 
-    @POST("costs/{id}")
+    @POST("costs/{district}/{id}")
     @FormUrlEncoded
     Call<Costs> setCost(@Path("id") int id,
+                        @Path("district") int district,
                         @Header("Authorization") String token,
                         @Field("consumption_rate") Float consumption_rate,
                         @Field("produced") Float produced,
@@ -50,7 +61,12 @@ public interface APIService {
                         @Field("longitude") Float longitude,
                         @Field("latitude") Float latitude);
 
-    @GET("costs/{id}")
-    Call<GetCosts> getCosts(@Path("id") int id,
+    @GET("costs/{location}/{id}")
+    Call<GetCosts> getCosts(@Path("id") int location,
+                            @Path("id") int id,
+                            @Header("Authorization") String token);
+
+    @GET("costs/history/{id}")
+    Call<GetCosts> getHistory(@Path("id") int id,
                             @Header("Authorization") String token);
 }

@@ -1,8 +1,5 @@
 package api_service;
 
-import com.example.vpp_android.InputData;
-import com.example.vpp_android.SignIn;
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -14,7 +11,6 @@ import retrofit2.Retrofit;
 public class RetrofitClient {
     private static Retrofit retrofit = null;
     private static OkHttpClient client;
-    private static SignIn sign;
 
     public static Retrofit getClient(String baseUrl){
        client = new OkHttpClient.Builder().addInterceptor(new Interceptor() {

@@ -20,8 +20,8 @@ import java.util.List;
 
 import api_service.APIService;
 import api_service.APIUtils;
-import costs_classes.GetCosts;
-import costs_classes.MainCostsData;
+import profile.DataProfile;
+import profile.Profile;
 import retrofit2.Callback;
 import retrofit2.Response;
 import savingdata_class.Account;
@@ -59,13 +59,12 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
         SharedPreferences settings = getContext().getSharedPreferences(Account.getFILE(), 0);
         SharedPreferences.Editor editor = settings.edit();
         SharedPreferences sp = getContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String name = sp.getString("user_name", "");
         String token = sp.getString("user_token", "");
 
         //set action to button logout
         logout.setOnClickListener(v -> {
 
-            if (name.equals("")) {
+            if (token.equals("")) {
                 Toast.makeText(getContext(), "Not logged in", Toast.LENGTH_SHORT).show();
             } else {
                 editor.clear();
@@ -79,26 +78,26 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
         //set action to menuAbout get user info
         menuAbout.setOnClickListener(v -> {
             //make request to get user data
-            mApiService.getCosts(token).enqueue(new Callback<GetCosts>() {
+            String tokenAddHeader = "Token " + token;
+            mApiService.getEmployee(tokenAddHeader).enqueue(new Callback<DataProfile>() {
                 @Override
-                public void onResponse(Response<GetCosts> response) {
+                public void onResponse(Response<DataProfile> response) {
                     if (response.isSuccess()) {
-                        infoMenu.setText(new StringBuilder(response.body().getMainCostsData().getDistrict())
-                                .append("\n")
-                                .append(response.body().getMainCostsData().getPhone())
-                                .append("\n")
-                                .append(response.body().getMainCostsData().getWorker())
-                                .append("\n")
-                                .append(response.body().getMainCostsData().getPopulation())
-                                .append("\n")
-                                .append(response.body().getMainCostsData().getRegion())
-                        );
+                                infoMenu.setText(new StringBuilder(response.body().getProfile().getFirstName())
+                                        .append("\n")
+                                        .append(response.body().getProfile().getLastName())
+                                        .append("\n")
+                                        .append(response.body().getProfile().getMiddleName())
+                                        .append("\n")
+                                        .append(response.body().getProfile().getPhone()));
                     }
+                    Toast.makeText(getContext(), " " + response.message(), Toast.LENGTH_SHORT).show();
                     Log.d("@@@", "onResponse: " + response.message());
                 }
                 //if request failed get message to LogCat
                 @Override
                 public void onFailure(Throwable t) {
+                    Toast.makeText(getContext(), " " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("@@@", "onFailure: " + t.getMessage());
                 }
             });

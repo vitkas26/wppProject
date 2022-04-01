@@ -60,6 +60,16 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="oauth_number_text_view">Введите телефонный номер</string>
+    <string name="country_code">+996</string>
+    <string name="card_view_date">01.01.2021</string>
+    <string name="card_view_region">Область</string>
+    <string name="no_data">нет данных</string>
+    <string name="product_name">Название продукта</string>
+    <string name="area_consumption_rate">Норма расхода по региону</string>
+    <string name="residual_volume">Остаточный объем</string>
+    <string name="created_at">дата создания</string>
+    <string name="availability_in_month">Доступно в месяц</string>
 
     <!--Items strings-->
     <!--    <string-array name="Products">-->

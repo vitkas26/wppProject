@@ -1,7 +1,6 @@
 package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -9,52 +8,49 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.vpp_android.districts.DataDistricts;
+import com.example.vpp_android.districts.Districts;
+
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import api_service.APIService;
 import api_service.APIUtils;
-import api_service.Routes;
 import costs_classes.Costs;
 import location_service.GpsTracker;
-import okhttp3.Interceptor;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import products_classes.Data;
 import products_classes.Product;
 import retrofit2.Callback;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class InputData extends AppCompatActivity {
     private List<String> items = new ArrayList<>();
+    private List<String> districts = new ArrayList<>();
     private int costsId;
+    private int districtId;
     Spinner inputDataSpinner;
+    Spinner inputDistrictSpinner;
     APIService mAPIService;
     private GpsTracker gpsTracker;
-    int productId;
     Button submitCosts;
     TextInputEditText consumption_rate;
     TextInputEditText produced;
     TextInputEditText stock_by_population;
     TextInputEditText outlet_stock;
     TextInputEditText price;
+    private String spToken;
     double latitude;
     double longitude;
 
@@ -66,6 +62,7 @@ public class InputData extends AppCompatActivity {
         mAPIService = APIUtils.getAPIService();
 
         inputDataSpinner = findViewById(R.id.input_data_spinner);
+        inputDistrictSpinner = findViewById(R.id.input_data_district_spinner);
         submitCosts = findViewById(R.id.submit_costs);
         consumption_rate = findViewById(R.id.consumption_rate);
         produced = findViewById(R.id.produced);
@@ -73,11 +70,15 @@ public class InputData extends AppCompatActivity {
         outlet_stock = findViewById(R.id.outlet_stock);
         price = findViewById(R.id.price);
 
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+        spToken = "Token " + sp.getString("user_token", "");
+
+        getDistricts();
         getProduct();
         checkLocationPermission();
 
         //Listener for post costs data
-        submitCosts.setOnClickListener(v -> getLocation(v));
+        submitCosts.setOnClickListener(this::getLocation);
 
         //Items array adapter in spinner
         inputDataSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -92,17 +93,29 @@ public class InputData extends AppCompatActivity {
 
             }
         });
+
+        inputDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String itemPos = String.valueOf(position);
+                districtId = Integer.parseInt(itemPos);
+                districtId++;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
-    private void setCosts(int id, String token, float consumption_rate, float produced,
+    private void setCosts(int id, int district, String token, float consumption_rate, float produced,
                           float stock_by_population, float outlet_stock,
                           float price, float longitude, float latitude){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
-        mAPIService.setCost(id, spToken, consumption_rate, produced,
+
+        mAPIService.setCost(id, district, spToken, consumption_rate, produced,
                             stock_by_population,
                             outlet_stock, price,
-                            longitude, latitude).enqueue(new Callback<Costs>(){
+                longitude, latitude).enqueue(new Callback<Costs>(){
             @Override
             public void onResponse(Response<Costs> response) {
                 if (response.isSuccess()){
@@ -122,6 +135,7 @@ public class InputData extends AppCompatActivity {
     }
 
     //Authentication private method
+
     private void getProduct(){
         mAPIService.getProduct().enqueue(new Callback<Product>(){
             @Override
@@ -134,6 +148,26 @@ public class InputData extends AppCompatActivity {
                     addDataToSpinner(items);
                 } else {
                     Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) { }
+        });
+    }
+    private void getDistricts() {
+
+        mAPIService.getDistricts(spToken).enqueue(new Callback<DataDistricts>(){
+            @Override
+            public void onResponse(Response<DataDistricts> response) {
+                if (response.isSuccess()){
+                    for (Districts item: response.body().getDistricts()
+                         ) {
+                        districts.add(item.getName());
+                    }
+                    addDistrictToSpinner(districts);
+                } else {
+                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Log.d("@@@", "onResponse: " + response.code());
                 }
             }
             @Override
@@ -153,8 +187,6 @@ public class InputData extends AppCompatActivity {
     }
 
     private void getLocation(View view){
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String spToken = sp.getString("user_token", "");
         gpsTracker = new GpsTracker(InputData.this);
 
         if(gpsTracker.canGetLocation()){
@@ -163,7 +195,7 @@ public class InputData extends AppCompatActivity {
             if (latitude == 0 || longitude == 0){
                 showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
             }else{
-                setCosts(costsId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
+                setCosts(costsId, districtId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
                         Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
                         Float.parseFloat(price.getText().toString()),
                         (float) longitude, (float) latitude);
@@ -178,6 +210,12 @@ public class InputData extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputDataSpinner.setAdapter(adapter);
+    }
+    private void addDistrictToSpinner(List<String> districts){
+        ArrayAdapter<String> districtsAdapter = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, districts);
+        districtsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputDistrictSpinner.setAdapter(districtsAdapter);
     }
 
     @Override

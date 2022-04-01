@@ -19,10 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signIn;
     FloatingActionButton inputData;
     Button viewData;
-    TextView userText;
+    Button reportsButton;
     BottomAppBar bottomAppBar;
     DrawerLayout drawerLayout;
     private String PREFS_FILE = "Account";
@@ -35,18 +34,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.public_main_activity);
         initAppBar();
         initViews();
-        checkLoginVisible();
         setupClickListeners();
 
     }
 
     // set click listeners to buttons and appBar
     private void setupClickListeners() {
-        signIn.setOnClickListener(v -> startActivity(v, SignIn.class));
 
         inputData.setOnClickListener(v -> startActivity(v, InputData.class));
 
         viewData.setOnClickListener(v -> startActivity(v, ViewData.class));
+
+        reportsButton.setOnClickListener(v -> startActivity(v, History.class));
 
         bottomAppBar.setNavigationOnClickListener(view->{
             BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu();
@@ -54,26 +53,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // check weather show button or logged in user email
-    private void checkLoginVisible() {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String name = sp.getString("user_name", "");
 
-
-        if (name != ""){
-            signIn.setVisibility(View.GONE);
-            userText.setText(name);
-        }else{
-            signIn.setVisibility(View.VISIBLE);
-            userText.setVisibility(View.GONE);
-        }
-    }
 // initialize Views on Activity
     private void initViews() {
-        signIn = findViewById(R.id.sign_in_btn);
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
-        userText = findViewById(R.id.sign_user);
+        reportsButton = findViewById(R.id.reports_btn);
         drawerLayout = findViewById(R.id.main_activity_layout);
     }
 // initialize appBar

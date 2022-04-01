@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -63,10 +64,8 @@ public class ViewData extends AppCompatActivity{
         costsItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String itemPos = String.valueOf(position);
-                costsId = Integer.parseInt(itemPos);
-                costsId++;
-                getCosts();
+                position++;
+                getCosts(position);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -102,22 +101,23 @@ public class ViewData extends AppCompatActivity{
         costsItem.setAdapter(adapter);
     }
 
-    public void getCosts(){
+    public void getCosts(int position){
             SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-            String spToken = sp.getString("user_token", "");
+            String spToken = "Token " + sp.getString("user_token", "");
+        Log.d("@@@", "getCosts: " + spToken);
+        int location = 0;
 
-        mAPIService.getCosts(costsId, spToken).enqueue(new Callback<GetCosts>() {
+        mAPIService.getCosts(location, position, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
+                Log.d("@@@", "onResponse: " + response.raw());
                 if (response.isSuccess()){
                     List<CostsData> costsData = response.body().getMainCostsData().getCostsData();
-                    for (CostsData item: costsData){
-                        consumption_rate.setText(String.valueOf(item.getConsumption_rate()));
-                        produced.setText(String.valueOf(item.getProduced()));
-                        stock_by_population.setText(String.valueOf(item.getStock_by_population()));
-                        outlet_stock.setText(String.valueOf(item.getOutlet_stock()));
-                        price.setText(String.valueOf(item.getPrice()));
-                    }
+                        consumption_rate.setText(String.valueOf(costsData.get(0).getConsumption_rate()));
+                        produced.setText(String.valueOf(costsData.get(0).getProduced()));
+                        stock_by_population.setText(String.valueOf(costsData.get(0).getStock_by_population()));
+                        outlet_stock.setText(String.valueOf(costsData.get(0).getOutlet_stock()));
+                        price.setText(String.valueOf(costsData.get(0).getPrice()));
                 }else{
                     showMessage("Error code: " + response.code());
                 }
