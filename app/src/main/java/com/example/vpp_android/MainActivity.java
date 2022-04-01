@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionButton inputData;
     Button viewData;
+    Button reportsButton;
     BottomAppBar bottomAppBar;
     DrawerLayout drawerLayout;
     private String PREFS_FILE = "Account";
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
         viewData.setOnClickListener(v -> startActivity(v, ViewData.class));
 
+        reportsButton.setOnClickListener(v -> startActivity(v, History.class));
+
         bottomAppBar.setNavigationOnClickListener(view->{
             BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu();
             bottomSheetDialogMenu.show(getSupportFragmentManager(),"BottomSheetDialog");
@@ -55,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     private void initViews() {
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
+        reportsButton = findViewById(R.id.reports_btn);
         drawerLayout = findViewById(R.id.main_activity_layout);
     }
 // initialize appBar

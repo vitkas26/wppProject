@@ -43,7 +43,9 @@
         <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/navigation_grawer.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/oauth_activity.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/product_item_dialog.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/public_main_activity.xml" value="0.2341485507246377" />
+        <entry key="app/src/main/res/layout/recycler_item.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/tool_bar.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/app_bar_menu.xml" value="0.35625" />

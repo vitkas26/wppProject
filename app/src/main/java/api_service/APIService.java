@@ -1,5 +1,7 @@
 package api_service;
 
+import com.example.vpp_android.districts.DataDistricts;
+
 import auth_classes.Authorization;
 import auth_classes.PhoneNumber;
 import auth_classes.Token;
@@ -8,7 +10,6 @@ import costs_classes.GetCosts;
 import products_classes.Product;
 
 import profile.DataProfile;
-import profile.Profile;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -16,6 +17,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+
 public interface APIService {
     //Login to service
     @POST("login")
@@ -37,14 +39,19 @@ public interface APIService {
     @GET("products")
     Call<Product> getProduct();
 
+    //getDistricts
+    @GET("com/example/vpp_android/districts")
+    Call<DataDistricts> getDistricts(@Header("Authorization") String token);
+
     //getWorkerInfo
     @GET("profiles")
     Call<DataProfile> getEmployee(@Header("Authorization") String token);
 
 
-    @POST("costs/{id}")
+    @POST("costs/{district}/{id}")
     @FormUrlEncoded
     Call<Costs> setCost(@Path("id") int id,
+                        @Path("district") int district,
                         @Header("Authorization") String token,
                         @Field("consumption_rate") Float consumption_rate,
                         @Field("produced") Float produced,
@@ -54,7 +61,12 @@ public interface APIService {
                         @Field("longitude") Float longitude,
                         @Field("latitude") Float latitude);
 
-    @GET("costs/{id}")
-    Call<GetCosts> getCosts(@Path("id") int id,
+    @GET("costs/{location}/{id}")
+    Call<GetCosts> getCosts(@Path("id") int location,
+                            @Path("id") int id,
+                            @Header("Authorization") String token);
+
+    @GET("costs/history/{id}")
+    Call<GetCosts> getHistory(@Path("id") int id,
                             @Header("Authorization") String token);
 }
