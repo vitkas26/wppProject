@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -72,37 +73,14 @@ public class ViewData extends AppCompatActivity{
         costsItemRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String itemPos = String.valueOf(position);
-                costsIdReg = Integer.parseInt(itemPos);
-                costsIdReg++;
+                position++;
                 getCosts(position);
-                Toast.makeText(getBaseContext(), "Region:" + costsIdReg, Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
-        //Items array adapter in spinner
-        costsItem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                String itemPos = String.valueOf(position);
-//                costsId = Integer.parseInt(itemPos);
-//                costsId = 0;
-//                costsId = ++position;
-                getCosts(position);
-                Toast.makeText(getBaseContext(), "Item" + position, Toast.LENGTH_SHORT).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        //Add back button to Action Button
-        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
     //Authentication private method
@@ -159,11 +137,16 @@ public class ViewData extends AppCompatActivity{
         costsItem.setAdapter(adapter);
     }
 
-
     public void getCosts(int position){
-        mAPIService.getCosts(costsIdReg, position, spToken).enqueue(new Callback<GetCosts>() {
+            SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
+            String spToken = "Token " + sp.getString("user_token", "");
+        Log.d("@@@", "getCosts: " + spToken);
+        int location = 0;
+
+        mAPIService.getCosts(location, position, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
+                Log.d("@@@", "onResponse: " + response.raw());
                 if (response.isSuccess()){
                     List<CostsData> costsData = response.body().getMainCostsData().getCostsData();
                         consumption_rate.setText(String.valueOf(costsData.get(0).getConsumption_rate()));
@@ -171,9 +154,6 @@ public class ViewData extends AppCompatActivity{
                         stock_by_population.setText(String.valueOf(costsData.get(0).getStock_by_population()));
                         outlet_stock.setText(String.valueOf(costsData.get(0).getOutlet_stock()));
                         price.setText(String.valueOf(costsData.get(0).getPrice()));
-                        Toast.makeText(getBaseContext(), "location:" + costsIdReg, Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getBaseContext(), "position:" + position, Toast.LENGTH_SHORT).show();
-
                 }else{
                     showMessage("Error code: " + response.code());
                 }

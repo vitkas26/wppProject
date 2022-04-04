@@ -8,6 +8,7 @@ public class Authorization {
     private String password;
     private String token;
     private int user_id;
+    private int fucking_looser;
 
     public Authorization(int user_id, String token) {
         this.user_id = user_id;

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@drawable/ic_info"
+        android:text="Меню приложения"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/menuAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/ic_info"
+        android:text="@string/about_app"
+        android:textSize="20sp"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/menuSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:icon="@drawable/ic_settings"
+        android:text="@string/app_settings"
+        android:clickable="true"
+        android:textSize="20sp"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/infoMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textAlignment="center"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Выйти"
+        android:textSize="12sp" />
+
+</LinearLayout>
