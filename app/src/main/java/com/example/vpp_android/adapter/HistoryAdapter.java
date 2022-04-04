@@ -42,7 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         holder.productTextView.setText(Float.toString(data.get(position).getPrice()));
         holder.regionTextView.setText(Float.toString(data.get(position).getProduced()));
-        holder.dateTextView.setText(Float.toString(data.get(position).getResidual_volume()));
+        holder.dateTextView.setText(data.get(position).getCreatedAt());
     }
     @Override
     public int getItemCount() {

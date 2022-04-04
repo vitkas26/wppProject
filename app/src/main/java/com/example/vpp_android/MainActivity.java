@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
     Button viewData;
     Button reportsButton;
     BottomAppBar bottomAppBar;
-    DrawerLayout drawerLayout;
-    private String PREFS_FILE = "Account";
-    private String PREF_NAME = "user_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
         reportsButton = findViewById(R.id.reports_btn);
-        drawerLayout = findViewById(R.id.main_activity_layout);
     }
 // initialize appBar
     private void initAppBar() {
@@ -69,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(bottomAppBar);
     }
 
-        //callback intent signIn activity
+        //callback intent to start selected activity
     public void startActivity(View view, Class<? extends Activity> activity){
         try {
             Intent signInIntent = new Intent(getApplicationContext(), activity);

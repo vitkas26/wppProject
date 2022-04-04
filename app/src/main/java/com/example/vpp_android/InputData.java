@@ -31,8 +31,6 @@ import api_service.APIUtils;
 import costs_classes.Costs;
 import location_service.GpsTracker;
 import products_classes.Data;
-import products_classes.DataLoc;
-import products_classes.GetCostsLoc;
 import products_classes.Product;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,7 +46,6 @@ public class InputData extends AppCompatActivity {
     private GpsTracker gpsTracker;
     Button submitCosts;
     TextInputEditText consumption_rate;
-    int location;
     TextInputEditText produced;
     TextInputEditText stock_by_population;
     TextInputEditText outlet_stock;
@@ -64,7 +61,6 @@ public class InputData extends AppCompatActivity {
 
         mAPIService = APIUtils.getAPIService();
 
-        inputLocationSpinner = findViewById(R.id.input_location_spinner);
         inputDataSpinner = findViewById(R.id.input_data_spinner);
         inputDistrictSpinner = findViewById(R.id.input_data_district_spinner);
         submitCosts = findViewById(R.id.submit_costs);
@@ -80,11 +76,11 @@ public class InputData extends AppCompatActivity {
         getDistricts();
         getProduct();
         checkLocationPermission();
-        getLocSpinner();
+
         //Listener for post costs data
         submitCosts.setOnClickListener(this::getLocation);
 
-        //Items array adapter in spinner
+        //Getting product position from spinner to make request by id of product
         inputDataSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,12 +88,13 @@ public class InputData extends AppCompatActivity {
                 costsId = Integer.parseInt(itemPos);
                 costsId++;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
+        //Getting district position from spinner to make request by id of region
         inputDistrictSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -105,6 +102,7 @@ public class InputData extends AppCompatActivity {
                 districtId = Integer.parseInt(itemPos);
                 districtId++;
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -112,62 +110,54 @@ public class InputData extends AppCompatActivity {
         });
     }
 
+    // getting data from editTexts and sending them by request setCost
     private void setCosts(int id, int district, String token, float consumption_rate, float produced,
                           float stock_by_population, float outlet_stock,
-                          float price, float longitude, float latitude){
-
-        mAPIService.setCost(id, district, spToken, consumption_rate, produced,
-                            stock_by_population,
-                            outlet_stock, price,
-                longitude, latitude).enqueue(new Callback<Costs>(){
+                          float price, float longitude, float latitude) {
+        mAPIService.setCost(id, district, token, consumption_rate, produced,
+                stock_by_population,
+                outlet_stock, price,
+                longitude, latitude).enqueue(new Callback<Costs>() {
             @Override
             public void onResponse(Response<Costs> response) {
-                Log.d("location", "onResponse: " + response.raw());
-                if (response.isSuccess()){
+                Log.d("@@@", "onResponse: " + response.raw());
+                if (response.isSuccess()) {
                     showMessage("Данные отправлены");
+                    clearFields();
                 } else {
                     if (response.code() == 400) {
                         Toast.makeText(getBaseContext(), "400", Toast.LENGTH_SHORT).show();
                     } else {
+                        Log.d("@@@", "onResponse: " + response.raw());
                         showMessage("Error code: " + response.code());
                     }
                 }
-
             }
+
             @Override
-            public void onFailure(Throwable t) { }
+            public void onFailure(Throwable t) {
+            }
         });
     }
 
-    private void getLocSpinner(){
-        mAPIService.getLoc(spToken).enqueue(new Callback<GetCostsLoc>(){
-            @Override
-            public void onResponse(Response<GetCostsLoc> response) {
-                if (response.isSuccess()){
-                    List<DataLoc> itemLoc = response.body().getData();
-                    for (DataLoc obj: itemLoc){
-                        itemsLoc.add(obj.getName());
-                    }
-                    //location = itemLoc.get(0).getId();
-                    addDataLocSpinner(itemsLoc);
-                } else {
-                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Throwable t) { }
-        });
+    // clear fields function used when one product where sent and new product where selected
+    private void clearFields() {
+        submitCosts.setText("");
+        consumption_rate.setText("");
+        produced.setText("");
+        stock_by_population.setText("");
+        outlet_stock.setText("");
+        price.setText("");
     }
 
-    //Authentication private method
-
-    private void getProduct(){
-        mAPIService.getProduct().enqueue(new Callback<Product>(){
+    //GET request from server getting all products and adding them to spinner
+    private void getProduct() {
+        mAPIService.getProduct().enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Response<Product> response) {
-                if (response.isSuccess()){
+                if (response.isSuccess()) {
                     List<Data> itemObj = response.body().getData();
-                    for (Data obj: itemObj){
+                    for (Data obj : itemObj) {
                         items.add(obj.getName());
                     }
                     addDataToSpinner(items);
@@ -175,99 +165,91 @@ public class InputData extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
-            public void onFailure(Throwable t) { }
+            public void onFailure(Throwable t) {
+            }
         });
     }
+
+    // Get request to server getting all available districts and adding them to spinner
     private void getDistricts() {
 
-        mAPIService.getDistricts(spToken).enqueue(new Callback<DataDistricts>(){
+        mAPIService.getDistricts(spToken).enqueue(new Callback<DataDistricts>() {
             @Override
             public void onResponse(Response<DataDistricts> response) {
-                if (response.isSuccess()){
-                    for (Districts item: response.body().getDistricts()
-                         ) {
+                Log.d("@@@", "onResponse: " + response.raw());
+                if (response.isSuccess()) {
+                    for (Districts item : response.body().getDistricts()
+                    ) {
                         districts.add(item.getName());
                     }
                     addDistrictToSpinner(districts);
                 } else {
                     Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
-                    Log.d("@@@", "onResponse: " + response.code());
                 }
             }
+
             @Override
-            public void onFailure(Throwable t) { }
+            public void onFailure(Throwable t) {
+            }
         });
     }
 
     //Check location permission
-    private void checkLocationPermission(){
+    private void checkLocationPermission() {
         try {
-            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(InputData.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void getLocation(View view){
+    // Getting phone location and making request to server for adding data
+    private void getLocation(View view) {
         gpsTracker = new GpsTracker(InputData.this);
-        if(gpsTracker.canGetLocation()){
+// checking if gpsTracker got users location
+        if (gpsTracker.canGetLocation()) {
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
-            if (latitude == 0 || longitude == 0){
+            if (latitude == 0 || longitude == 0) {
                 showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
-            }else{
-                setCosts(costsId, districtId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
-                        Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
-                        Float.parseFloat(price.getText().toString()),
-                        (float) longitude, (float) latitude);
+            } else {
+                //checking for not filled editTexts
+                if (consumption_rate.getText().toString().equals("") || produced.getText().toString().equals("") || stock_by_population.getText().toString().equals("") ||
+                        outlet_stock.getText().toString().equals("") || price.getText().toString().equals("")) {
+                    showMessage("Не все поля были заполнены");
+                } else {
+                    //sending data for request setCost
+                    setCosts(costsId, districtId, spToken, Float.parseFloat(consumption_rate.getText().toString()), Float.parseFloat(produced.getText().toString()),
+                            Float.parseFloat(stock_by_population.getText().toString()), Float.parseFloat(outlet_stock.getText().toString()),
+                            Float.parseFloat(price.getText().toString()),
+                            (float) longitude, (float) latitude);
+                }
             }
-        }else{
+        } else {
+            // if users location where not founded, opens dialog to switch on gps settings
             gpsTracker.showSettingsAlert();
         }
     }
-
-    private void addDataToSpinner(List<String> items){
+// adding data to product spinner from request getProduct
+    private void addDataToSpinner(List<String> items) {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputDataSpinner.setAdapter(adapter);
     }
-    private void addDistrictToSpinner(List<String> districts){
+// adding data to district spinner from request getDistrict
+    private void addDistrictToSpinner(List<String> districts) {
         ArrayAdapter<String> districtsAdapter = new ArrayAdapter<>(getApplicationContext(),
                 android.R.layout.simple_spinner_item, districts);
         districtsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputDistrictSpinner.setAdapter(districtsAdapter);
     }
 
-    private void addDataLocSpinner(List<String> itemsLoc){
-        ArrayAdapter<String> adapterLoc = new ArrayAdapter<>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, itemsLoc);
-        adapterLoc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        inputLocationSpinner.setAdapter(adapterLoc);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    public int getCostsId() {
-        return costsId;
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        return true;
-    }
-
-    private void showMessage(String text){
+    private void showMessage(String text) {
         Toast.makeText(getBaseContext(), text, Toast.LENGTH_SHORT).show();
     }
 }

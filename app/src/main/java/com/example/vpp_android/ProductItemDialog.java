@@ -27,6 +27,7 @@ public class ProductItemDialog extends BottomSheetDialogFragment {
     private TextView createdAt;
     private CostsData costsData;
 
+    //new Instance of DialogFragment with bundle where data about productCosts is saving
     public static ProductItemDialog newInstance(CostsData costsData){
         ProductItemDialog productItemDialog = new ProductItemDialog();
         Bundle bundle = new Bundle();
@@ -50,6 +51,7 @@ public class ProductItemDialog extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
+        //when view in fragment created setting data from bundle to our instance of costsData
         costsData = getArguments().getParcelable(COSTS_DATA_ENTITY);
         fillTextViews();
     }
@@ -67,6 +69,7 @@ public class ProductItemDialog extends BottomSheetDialogFragment {
         createdAt = view.findViewById(R.id.product_item_dialog__created_at);
     }
 
+    // setting costs to textViews from saved costsData
     private void fillTextViews() {
         consumption_rate.setText(Float.toString(costsData.getConsumption_rate()));
         areaConsumptionRate.setText(Float.toString(costsData.getArea_consumption()));

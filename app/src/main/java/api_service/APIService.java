@@ -40,14 +40,14 @@ public interface APIService {
     Call<Product> getProduct();
 
     //getDistricts
-    @GET("com/example/vpp_android/districts")
+    @GET("districts")
     Call<DataDistricts> getDistricts(@Header("Authorization") String token);
 
     //getWorkerInfo
     @GET("profiles")
     Call<DataProfile> getEmployee(@Header("Authorization") String token);
 
-
+    //setCosts
     @POST("costs/{district}/{id}")
     @FormUrlEncoded
     Call<Costs> setCost(@Path("id") int id,
@@ -61,11 +61,12 @@ public interface APIService {
                         @Field("longitude") Float longitude,
                         @Field("latitude") Float latitude);
 
+    //Get products by ID and by location
     @GET("costs/{location}/{id}")
-    Call<GetCosts> getCosts(@Path("id") int location,
+    Call<GetCosts> getCosts(@Path("location") int location,
                             @Path("id") int id,
                             @Header("Authorization") String token);
-
+    //Get all history notes by region ID
     @GET("costs/history/{id}")
     Call<GetCosts> getHistory(@Path("id") int id,
                             @Header("Authorization") String token);

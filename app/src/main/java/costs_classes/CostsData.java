@@ -3,6 +3,8 @@ package costs_classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 public class CostsData implements Parcelable {
     float consumption_rate;
     float area_consumption;
@@ -12,6 +14,7 @@ public class CostsData implements Parcelable {
     float residual_volume;
     float price;
     float availability_in_months;
+    @SerializedName("created_at")
     String createdAt;
 
     protected CostsData(Parcel in) {

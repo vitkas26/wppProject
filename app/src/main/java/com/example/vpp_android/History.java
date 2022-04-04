@@ -43,28 +43,30 @@ public class History extends AppCompatActivity implements HistoryAdapter.ItemCli
         getData();
     }
 
+    // make request to server to get all histories
     private void getData() {
         int regionId = 1;
         mApiService.getHistory(regionId, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
-                if(response.isSuccess()){
+                if (response.isSuccess()) {
                     data.addAll(response.body().getMainCostsData().getCostsData());
                     initRecycler(data);
                     Log.d("@@@", "onResponse: " + response.body().getMainCostsData().getCostsData().size());
-                }else {
+                } else {
                     Log.d("@@@", "onResponse: " + response.raw());
                 }
             }
 
             @Override
             public void onFailure(Throwable t) {
-                    throw new IllegalStateException(t.getMessage());
+                throw new IllegalStateException(t.getMessage());
             }
         });
 
     }
 
+    // setting up and initialize recycler view
     private void initRecycler(List<CostsData> data) {
         recyclerView = findViewById(R.id.activity_history__recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,10 +76,11 @@ public class History extends AppCompatActivity implements HistoryAdapter.ItemCli
         adapter.setOnClickListener(this);
     }
 
+    //callback from adapter on item click, when one of histories items where selected
     @Override
     public void onItemClick(View view, CostsData item) {
         Log.d("@@@", "onItemClick: " + item.getStock_by_population());
         ProductItemDialog productItemDialog = new ProductItemDialog();
-        productItemDialog.newInstance(item).show(getSupportFragmentManager(),"ProductItemDialog");
+        productItemDialog.newInstance(item).show(getSupportFragmentManager(), "ProductItemDialog");
     }
 }

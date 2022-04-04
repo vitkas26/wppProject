@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -55,6 +58,7 @@ public class GetSmsActivity extends AppCompatActivity {
         setCursorPosition();
     }
 
+    // change cursor position in editText after text changed
     private void setCursorPosition() {
         firstNumberEditText.requestFocus();
         firstNumberEditText.addTextChangedListener(new TextWatcher() {
@@ -65,7 +69,7 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (firstNumberEditText.getText().length() > 0) {
+                if (!charSequence.equals("")) {
                     secondNumberEditText.requestFocus();
                 }
             }
@@ -84,7 +88,7 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (secondNumberEditText.getText().length() > 0) {
+                if (!charSequence.equals("")) {
                     thirdNumberEditText.requestFocus();
                 }
             }
@@ -103,7 +107,7 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (thirdNumberEditText.getText().length() > 0) {
+                if (!charSequence.equals("")) {
                     fourthNumberEditText.requestFocus();
                 }
             }
@@ -122,7 +126,7 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (fourthNumberEditText.getText().length() > 0) {
+                if (!charSequence.equals("")) {
                     fifthNumberEditText.requestFocus();
                 }
             }
@@ -141,7 +145,7 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (fifthNumberEditText.getText().length() > 0) {
+                if (!charSequence.equals("")) {
                     sixthNumberEditText.requestFocus();
                 }
             }
@@ -160,7 +164,15 @@ public class GetSmsActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    sendButton.requestFocus();
+                if (!charSequence.equals("")) {
+                    // listen when enter key_code pressed, and send request after it
+                    sixthNumberEditText.setOnEditorActionListener((OnEditorActionListener) (textView, i3, keyEvent) -> {
+                        if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || i3 == EditorInfo.IME_ACTION_DONE) {
+                            sendSmsRequest();
+                        }
+                        return false;
+                    });
+                }
             }
 
             @Override
@@ -170,7 +182,8 @@ public class GetSmsActivity extends AppCompatActivity {
         });
     }
 
-    private void generateSmsCode() {
+    // make string with sms from edit texts, check for size
+    private boolean generateSmsCode() {
         smsCode = firstNumberEditText.getText() +
                 secondNumberEditText.getText().toString() +
                 thirdNumberEditText.getText().toString() +
@@ -178,8 +191,10 @@ public class GetSmsActivity extends AppCompatActivity {
                 fifthNumberEditText.getText().toString() +
                 sixthNumberEditText.getText().toString();
         if (smsCode.length() == 6) {
+            return true;
         } else {
             showMessage("Не достаточно символов в коде");
+            return false;
         }
     }
 
@@ -205,41 +220,45 @@ public class GetSmsActivity extends AppCompatActivity {
             }
         });
 
-        sixthNumberEditText.setOnClickListener(v -> {
-            if (!sixthNumberEditText.getText().toString().equals("")) {
-                sixthNumberEditText.setText("");
-            }
-        });
         fifthNumberEditText.setOnClickListener(v -> {
             if (!fifthNumberEditText.getText().toString().equals("")) {
                 fifthNumberEditText.setText("");
             }
         });
 
+        sixthNumberEditText.setOnClickListener(v -> {
+            if (!sixthNumberEditText.getText().toString().equals("")) {
+                sixthNumberEditText.setText("");
+            }
+        });
+
         sendButton.setOnClickListener(v -> sendSmsRequest());
     }
 
+    // send request to server smsCode
     private void sendSmsRequest() {
-        generateSmsCode();
-        mApiService.sendSms(smsCode).enqueue(new Callback<Token>() {
-            @Override
-            public void onResponse(Response<Token> response) {
-                if (response.isSuccess()) {
-                    saveSharedPreferences(response.body().getToken());
-                } else {
-                    showMessage(response.message());
-                    Log.d("@@@", "onResponse: " + response.message());
+        if (generateSmsCode()) {
+            mApiService.sendSms(smsCode).enqueue(new Callback<Token>() {
+                @Override
+                public void onResponse(Response<Token> response) {
+                    if (response.isSuccess()) {
+                        saveSharedPreferences(response.body().getToken());
+                    } else {
+                        showMessage(response.message());
+                        Log.d("@@@", "onResponse: " + response.message());
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Throwable t) {
-                showMessage(t.getMessage());
-                Log.d("@@@", "onFailure: " + t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Throwable t) {
+                    showMessage(t.getMessage());
+                    Log.d("@@@", "onFailure: " + t.getMessage());
+                }
+            });
+        }
     }
 
+    //if response is successful save token to shared preferences
     private void saveSharedPreferences(String token) {
         SharedPreferences settings = getSharedPreferences(Account.getFILE(), MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -249,6 +268,7 @@ public class GetSmsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    // show messages in Toast function
     private void showMessage(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }

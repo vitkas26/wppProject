@@ -16,26 +16,20 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.List;
-
 import api_service.APIService;
 import api_service.APIUtils;
 import profile.DataProfile;
-import profile.Profile;
 import retrofit2.Callback;
 import retrofit2.Response;
 import savingdata_class.Account;
 
 public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
-    TextView logout;
-    TextView menuAbout;
-    TextView menuSettings;
-    TextView infoMenu;
-    APIService mApiService;
-
-    //Empty constructor to continue working after rotation
-    BottomSheetDialogMenu() {
-    }
+    private static final String LOGIN_STATE = "LOGIN_STATE";
+    private TextView logout;
+    private TextView menuAbout;
+    private TextView menuSettings;
+    private TextView infoMenu;
+    private APIService mApiService;
 
     //Override method, set layout to Fragment
     @Nullable
@@ -63,16 +57,16 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
 
         //set action to button logout
         logout.setOnClickListener(v -> {
-
-            if (token.equals("")) {
-                Toast.makeText(getContext(), "Not logged in", Toast.LENGTH_SHORT).show();
-            } else {
-                editor.clear();
-                editor.commit();
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(view.getContext(), "User logged out", Toast.LENGTH_SHORT).show();
-            }
+                if (token.equals("")) {
+                    Toast.makeText(getContext(), "Not logged in", Toast.LENGTH_SHORT).show();
+                } else {
+                    editor.clear();
+                    editor.commit();
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    startActivity(intent);
+                    Toast.makeText(view.getContext(), "User logged out", Toast.LENGTH_SHORT).show();
+                    logout.setText("войти");
+                }
         });
 
         //set action to menuAbout get user info
@@ -103,4 +97,5 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
             });
         });
     }
+
 }
