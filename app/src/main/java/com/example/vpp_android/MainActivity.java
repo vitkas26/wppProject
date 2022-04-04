@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu();
             bottomSheetDialogMenu.show(getSupportFragmentManager(),"BottomSheetDialog");
         });
+
+
     }
 
 

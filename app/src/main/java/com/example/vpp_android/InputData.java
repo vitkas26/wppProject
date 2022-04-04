@@ -31,6 +31,8 @@ import api_service.APIUtils;
 import costs_classes.Costs;
 import location_service.GpsTracker;
 import products_classes.Data;
+import products_classes.DataLoc;
+import products_classes.GetCostsLoc;
 import products_classes.Product;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +48,7 @@ public class InputData extends AppCompatActivity {
     private GpsTracker gpsTracker;
     Button submitCosts;
     TextInputEditText consumption_rate;
+    int location;
     TextInputEditText produced;
     TextInputEditText stock_by_population;
     TextInputEditText outlet_stock;
@@ -61,6 +64,7 @@ public class InputData extends AppCompatActivity {
 
         mAPIService = APIUtils.getAPIService();
 
+        inputLocationSpinner = findViewById(R.id.input_location_spinner);
         inputDataSpinner = findViewById(R.id.input_data_spinner);
         inputDistrictSpinner = findViewById(R.id.input_data_district_spinner);
         submitCosts = findViewById(R.id.submit_costs);
@@ -76,7 +80,7 @@ public class InputData extends AppCompatActivity {
         getDistricts();
         getProduct();
         checkLocationPermission();
-
+        getLocSpinner();
         //Listener for post costs data
         submitCosts.setOnClickListener(this::getLocation);
 
@@ -118,6 +122,7 @@ public class InputData extends AppCompatActivity {
                 longitude, latitude).enqueue(new Callback<Costs>(){
             @Override
             public void onResponse(Response<Costs> response) {
+                Log.d("location", "onResponse: " + response.raw());
                 if (response.isSuccess()){
                     showMessage("Данные отправлены");
                 } else {
@@ -128,6 +133,26 @@ public class InputData extends AppCompatActivity {
                     }
                 }
 
+            }
+            @Override
+            public void onFailure(Throwable t) { }
+        });
+    }
+
+    private void getLocSpinner(){
+        mAPIService.getLoc(spToken).enqueue(new Callback<GetCostsLoc>(){
+            @Override
+            public void onResponse(Response<GetCostsLoc> response) {
+                if (response.isSuccess()){
+                    List<DataLoc> itemLoc = response.body().getData();
+                    for (DataLoc obj: itemLoc){
+                        itemsLoc.add(obj.getName());
+                    }
+                    //location = itemLoc.get(0).getId();
+                    addDataLocSpinner(itemsLoc);
+                } else {
+                    Toast.makeText(getBaseContext(), "Error code: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onFailure(Throwable t) { }
@@ -188,7 +213,6 @@ public class InputData extends AppCompatActivity {
 
     private void getLocation(View view){
         gpsTracker = new GpsTracker(InputData.this);
-
         if(gpsTracker.canGetLocation()){
             latitude = gpsTracker.getLatitude();
             longitude = gpsTracker.getLongitude();
@@ -216,6 +240,13 @@ public class InputData extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, districts);
         districtsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         inputDistrictSpinner.setAdapter(districtsAdapter);
+    }
+
+    private void addDataLocSpinner(List<String> itemsLoc){
+        ArrayAdapter<String> adapterLoc = new ArrayAdapter<>(getApplicationContext(),
+                android.R.layout.simple_spinner_item, itemsLoc);
+        adapterLoc.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        inputLocationSpinner.setAdapter(adapterLoc);
     }
 
     @Override
