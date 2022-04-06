@@ -165,13 +165,8 @@ public class GetSmsActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.equals("")) {
+                    sendButton.requestFocus();
                     // listen when enter key_code pressed, and send request after it
-                    sixthNumberEditText.setOnEditorActionListener((OnEditorActionListener) (textView, i3, keyEvent) -> {
-                        if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || i3 == EditorInfo.IME_ACTION_DONE) {
-                            sendSmsRequest();
-                        }
-                        return false;
-                    });
                 }
             }
 
@@ -232,6 +227,13 @@ public class GetSmsActivity extends AppCompatActivity {
             }
         });
 
+        sixthNumberEditText.setOnEditorActionListener((textView, i3, keyEvent) -> {
+            if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER || i3 == EditorInfo.IME_ACTION_DONE) {
+                sendSmsRequest();
+            }
+            return false;
+        });
+
         sendButton.setOnClickListener(v -> sendSmsRequest());
     }
 
@@ -243,6 +245,7 @@ public class GetSmsActivity extends AppCompatActivity {
                 public void onResponse(Response<Token> response) {
                     if (response.isSuccess()) {
                         saveSharedPreferences(response.body().getToken());
+                        finish();
                     } else {
                         showMessage(response.message());
                         Log.d("@@@", "onResponse: " + response.message());

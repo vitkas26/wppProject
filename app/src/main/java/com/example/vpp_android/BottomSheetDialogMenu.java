@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -62,8 +63,6 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                 } else {
                     editor.clear();
                     editor.commit();
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(intent);
                     Toast.makeText(view.getContext(), "User logged out", Toast.LENGTH_SHORT).show();
                     logout.setText("войти");
                 }

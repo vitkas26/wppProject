@@ -90,6 +90,7 @@ public class OauthActivity extends AppCompatActivity {
                     // after success dismiss progressDialog, and go to next activity
                     progressDialog.dismiss();
                     startActivity(intent);
+                    finish();
                 }
             }
 

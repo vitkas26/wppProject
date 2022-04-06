@@ -23,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
     Button viewData;
     Button reportsButton;
     BottomAppBar bottomAppBar;
+    BottomSheetDialogMenu bottomSheetDialogMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.public_main_activity);
+
+        bottomSheetDialogMenu = new BottomSheetDialogMenu();
+
         initAppBar();
         initViews();
         setupClickListeners();
@@ -44,33 +48,33 @@ public class MainActivity extends AppCompatActivity {
 
         reportsButton.setOnClickListener(v -> startActivity(v, History.class));
 
-        bottomAppBar.setNavigationOnClickListener(view->{
-            BottomSheetDialogMenu bottomSheetDialogMenu = new BottomSheetDialogMenu();
-            bottomSheetDialogMenu.show(getSupportFragmentManager(),"BottomSheetDialog");
+        bottomAppBar.setNavigationOnClickListener(view -> {
+            bottomSheetDialogMenu.show(getSupportFragmentManager(), "BottomSheetDialog");
         });
 
 
     }
 
 
-// initialize Views on Activity
+    // initialize Views on Activity
     private void initViews() {
         inputData = findViewById(R.id.input_data_btn);
         viewData = findViewById(R.id.view_data);
         reportsButton = findViewById(R.id.reports_btn);
     }
-// initialize appBar
+
+    // initialize appBar
     private void initAppBar() {
         bottomAppBar = findViewById(R.id.bottomBar);
         setSupportActionBar(bottomAppBar);
     }
 
-        //callback intent to start selected activity
-    public void startActivity(View view, Class<? extends Activity> activity){
+    //callback intent to start selected activity
+    public void startActivity(View view, Class<? extends Activity> activity) {
         try {
             Intent signInIntent = new Intent(getApplicationContext(), activity);
             startActivity(signInIntent);
-        } catch (ActivityNotFoundException ex){
+        } catch (ActivityNotFoundException ex) {
             Toast.makeText(this, String.format("%s", ex), Toast.LENGTH_SHORT).show();
         }
     }
