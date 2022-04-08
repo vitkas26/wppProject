@@ -2,7 +2,7 @@ package savingdata_class;
 
 public class Account {
     private static final String FILE = "Account";
-    private static final Boolean IN_SYSTEM = false;
+    private static final String IN_SYSTEM = "in_system";
     private static final String USER_ID = "user_id";
     private static final String USER_TOKEN = "user_token";
     private static final String USER_NAME = "user_name";
@@ -11,9 +11,10 @@ public class Account {
         return FILE;
     }
 
-    public static Boolean getInSystem() {
+    public static String getInSystem() {
         return IN_SYSTEM;
     }
+
 
     public static String getUserId() {
         return USER_ID;

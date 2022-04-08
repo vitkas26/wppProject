@@ -266,7 +266,9 @@ public class GetSmsActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(Account.getFILE(), MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Account.getUserToken(), token);
+        editor.putBoolean(Account.getInSystem(), true);
         editor.apply();
+        Log.d("@@@", "saveSharedPreferences: " + settings.getBoolean(Account.getInSystem(), false));
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

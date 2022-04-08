@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -25,12 +24,14 @@ import retrofit2.Response;
 import savingdata_class.Account;
 
 public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
-    private static final String LOGIN_STATE = "LOGIN_STATE";
     private TextView logout;
     private TextView menuAbout;
     private TextView menuSettings;
     private TextView infoMenu;
     private APIService mApiService;
+    private boolean loginStatus;
+    private SharedPreferences settings;
+
 
     //Override method, set layout to Fragment
     @Nullable
@@ -49,44 +50,51 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
         infoMenu = view.findViewById(R.id.infoMenu);
         //setting up API utilities
         mApiService = APIUtils.getAPIService();
-
         //Getting shared preferences to interact with user account saved in
-        SharedPreferences settings = getContext().getSharedPreferences(Account.getFILE(), 0);
+        settings = getContext().getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
-        SharedPreferences sp = getContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
-        String token = sp.getString("user_token", "");
+        SharedPreferences sp = getContext().getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
+
+        checkLoginStatus();
+
 
         //set action to button logout
         logout.setOnClickListener(v -> {
-                if (token.equals("")) {
-                    Toast.makeText(getContext(), "Not logged in", Toast.LENGTH_SHORT).show();
-                } else {
-                    editor.clear();
-                    editor.commit();
-                    Toast.makeText(view.getContext(), "User logged out", Toast.LENGTH_SHORT).show();
-                    logout.setText("войти");
-                }
+            String token = sp.getString(Account.getUserToken(), "not exist");
+            if (token.equals("not exist")) {
+                Intent intent = new Intent(getContext(), OauthActivity.class);
+                startActivity(intent);
+                requireActivity().finish();
+            } else {
+                editor.clear();
+                editor.apply();
+                infoMenu.setText("");
+                checkLoginStatus();
+                Toast.makeText(view.getContext(), "User logged out", Toast.LENGTH_SHORT).show();
+            }
         });
 
         //set action to menuAbout get user info
         menuAbout.setOnClickListener(v -> {
             //make request to get user data
+            String token = sp.getString(Account.getUserToken(), "");
             String tokenAddHeader = "Token " + token;
             mApiService.getEmployee(tokenAddHeader).enqueue(new Callback<DataProfile>() {
                 @Override
                 public void onResponse(Response<DataProfile> response) {
                     if (response.isSuccess()) {
-                                infoMenu.setText(new StringBuilder(response.body().getProfile().getFirstName())
-                                        .append("\n")
-                                        .append(response.body().getProfile().getLastName())
-                                        .append("\n")
-                                        .append(response.body().getProfile().getMiddleName())
-                                        .append("\n")
-                                        .append(response.body().getProfile().getPhone()));
+                        infoMenu.setText(new StringBuilder(response.body().getProfile().getFirstName())
+                                .append("\n")
+                                .append(response.body().getProfile().getLastName())
+                                .append("\n")
+                                .append(response.body().getProfile().getMiddleName())
+                                .append("\n")
+                                .append(response.body().getProfile().getPhone()));
                     }
                     Toast.makeText(getContext(), " " + response.message(), Toast.LENGTH_SHORT).show();
                     Log.d("@@@", "onResponse: " + response.message());
                 }
+
                 //if request failed get message to LogCat
                 @Override
                 public void onFailure(Throwable t) {
@@ -95,6 +103,16 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                 }
             });
         });
+    }
+
+    private void checkLoginStatus() {
+        loginStatus = settings.getBoolean(Account.getInSystem(), false);
+        if (loginStatus) {
+            logout.setText("выйти");
+        } else {
+            logout.setText("войти");
+        }
+        Log.d("@@@", "checkLoginStatus: " + settings.getBoolean(Account.getInSystem(), false));
     }
 
 }
