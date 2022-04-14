@@ -3,6 +3,7 @@ package com.example.vpp_android;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -24,13 +24,21 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import api_service.APIService;
 import api_service.APIUtils;
 import auth_classes.TelegramUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Callback;
 import retrofit2.Response;
+import savingdata_class.Account;
 
-public class OauthActivity extends AppCompatActivity {
+public class OauthActivity extends AppCompatActivity implements TelegramWebViewClient.onFinish {
     private EditText phoneNumberEditText;
     private Button sendButton;
     private APIService mApiService;
@@ -133,11 +141,11 @@ public class OauthActivity extends AppCompatActivity {
         sendButton.setVisibility(View.GONE);
         telegramWebView.setVisibility(View.VISIBLE);
         telegramWebView.getSettings().setJavaScriptEnabled(true);
-        telegramWebView.getSettings().setLoadWithOverviewMode(true);
-        telegramWebView.getSettings().setUseWideViewPort(true);
+//        telegramWebView.getSettings().setLoadWithOverviewMode(true);
+//        telegramWebView.getSettings().setUseWideViewPort(true);
         telegramWebView.getSettings().setSupportMultipleWindows(true);
         telegramWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        telegramWebView.setWebViewClient(new TelegramWebViewClient());
+        telegramWebView.setWebViewClient(new TelegramWebViewClient(this));
         telegramWebView.loadUrl(url);
 
         telegramWebView.setWebChromeClient(new WebChromeClient() {
@@ -188,5 +196,48 @@ public class OauthActivity extends AppCompatActivity {
             }
         }
         return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void getToken(WebResourceRequest request) {
+        Runnable runnable = () -> telegramWebView.setVisibility(View.GONE);
+        runOnUiThread(runnable);
+        OkHttpClient client = new OkHttpClient();
+        // GET request
+        Request OkRequest = new Request.Builder()
+                .url(request.getUrl().toString())
+                .build();
+        client.newCall(OkRequest).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Log.d("@@@", e.toString());
+            }
+            @Override
+            public void onResponse(okhttp3.Response response) {
+                if(response.isSuccessful()){
+                    try {
+                        JSONObject jsonObject = new JSONObject(response.body().string());
+                        String token = jsonObject.getString("access_token");
+                        saveSharedPreferences(token);
+                        Log.d("@@@", "request get Token from Json: " + token);
+                    } catch (JSONException | IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void saveSharedPreferences(String token) {
+        SharedPreferences settings = getSharedPreferences(Account.getFILE(), MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Account.getUserToken(), token);
+        editor.putBoolean(Account.getInSystem(), true);
+        editor.apply();
+        Log.d("@@@", "saveSharedPreferences: " + settings.getBoolean(Account.getInSystem(), false));
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
