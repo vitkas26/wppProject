@@ -3,7 +3,7 @@ package api_service;
 import com.example.vpp_android.districts.DataDistricts;
 
 import auth_classes.Authorization;
-import auth_classes.PhoneNumber;
+import auth_classes.TelegramUrl;
 import auth_classes.Token;
 import costs_classes.Costs;
 import costs_classes.GetCosts;
@@ -26,9 +26,9 @@ public interface APIService {
                                  @Field("password") String password);
 
     //Send tel to server
-    @POST("send_otp_sms")
+    @POST("register")
     @FormUrlEncoded
-    Call<PhoneNumber> sendTel(@Field("phone_number") String phoneNumber);
+    Call<TelegramUrl> sendTel(@Field("phone_number") String phoneNumber);
 
     //Send sms to server
     @POST("login_by_otp")

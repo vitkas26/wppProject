@@ -61,7 +61,7 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="oauth_number_text_view">Введите телефонный номер</string>
-    <string name="country_code">+996</string>
+    <string name="country_code">996</string>
     <string name="card_view_date">01.01.2021</string>
     <string name="card_view_region">Область</string>
     <string name="no_data">нет данных</string>
