@@ -18,6 +18,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import api_service.APIService;
 import api_service.APIUtils;
+import costs_classes.CostsData;
+import costs_classes.MainCostsData;
+import location_service.GpsTracker;
 import profile.DataProfile;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +33,7 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
     private TextView infoMenu;
     private APIService mApiService;
     private boolean loginStatus;
+    private int locationId;
     private SharedPreferences settings;
 
 
@@ -79,20 +83,28 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
             //make request to get user data
             String token = sp.getString(Account.getUserToken(), "");
             String tokenAddHeader = "Token " + token;
-            mApiService.getEmployee(tokenAddHeader).enqueue(new Callback<DataProfile>() {
+            int location = getLocation();
+            mApiService.getEmployee(location, tokenAddHeader).enqueue(new Callback<DataProfile>() {
                 @Override
                 public void onResponse(Response<DataProfile> response) {
+                    Log.d("@@@", "onResponse: " + response.body());
                     if (response.isSuccess()) {
-                        infoMenu.setText(new StringBuilder(response.body().getProfile().getFirstName())
+                        infoMenu.setText(new StringBuilder(response.body().getProfile().getRegion())
                                 .append("\n")
-                                .append(response.body().getProfile().getLastName())
+                                .append(response.body().getProfile().getDistrict())
                                 .append("\n")
-                                .append(response.body().getProfile().getMiddleName())
+                                .append(response.body().getProfile().getWorker())
                                 .append("\n")
-                                .append(response.body().getProfile().getPhone()));
+                                .append(response.body().getProfile().getPhone())
+                                .append("\n")
+                                .append(response.body().getProfile().getPopulation()));
                     }
-                    Toast.makeText(getContext(), " " + response.message(), Toast.LENGTH_SHORT).show();
                     Log.d("@@@", "onResponse: " + response.message());
+                    try {
+                        Toast.makeText(getContext(), " " + response.message(), Toast.LENGTH_SHORT).show();
+                    } catch (Exception exception) {
+                        Log.d("@@@", "Not found activity: " + exception.getMessage());
+                    }
                 }
 
                 //if request failed get message to LogCat
@@ -103,6 +115,52 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                 }
             });
         });
+    }
+
+    private int getLocation() {
+        GpsTracker gpsTracker = new GpsTracker(getContext());
+        float latitude;
+        float longitude;
+// checking if gpsTracker got users location
+        if (gpsTracker.canGetLocation()) {
+            latitude = (float) gpsTracker.getLatitude();
+            longitude = (float) gpsTracker.getLongitude();
+            if (latitude == 0 || longitude == 0) {
+                showMessage("Данные о вашем местополжении не определены\nНажмите на кнопку ещё раз.");
+            } else {
+                SharedPreferences sp = getContext().getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
+                String token = sp.getString(Account.getUserToken(), "");
+                String tokenAddHeader = "Token " + token;
+                mApiService.getUserLocation(tokenAddHeader,longitude, latitude).enqueue(new Callback<UserLocation>() {
+                    @Override
+                    public void onResponse(Response<UserLocation> response) {
+                        Log.d("@@@", "BottomSheet getLocation() onResponse: " + response.raw());
+                        if (response.isSuccess()) {
+                            locationId = response.body().getLocation();
+                        }
+                        Log.d("@@@", "onResponse: " + response.message());
+                        try {
+                            Toast.makeText(getContext(), " " + response.message(), Toast.LENGTH_SHORT).show();
+                        } catch (Exception exception) {
+                            Log.d("@@@", "Not found activity: " + exception.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+            }
+        } else {
+            // if users location where not founded, opens dialog to switch on gps settings
+            gpsTracker.showSettingsAlert();
+        }
+        return locationId;
+    }
+
+    private void showMessage(String toast) {
+        Toast.makeText(getContext(), toast, Toast.LENGTH_SHORT).show();
     }
 
     private void checkLoginStatus() {

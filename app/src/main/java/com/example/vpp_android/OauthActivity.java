@@ -1,9 +1,12 @@
 package com.example.vpp_android;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -45,12 +48,20 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
     private ProgressDialog progressDialog;
     private TextView phoneNumberTextView;
     private WebView telegramWebView;
+    private SharedPreferences settings;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oauth_activity);
 
-        Log.d("@@@", "onCreate: " + savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        settings = getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        SharedPreferences sp = getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
+
+        checkLoginStatus();
+
         initViews();
         mApiService = APIUtils.getAPIService();
         sendButtonListener();
@@ -88,8 +99,8 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
 
     private void sendPhone() {
         if (checkPhoneSize()) {
-            Intent intent = new Intent(this, GetSmsActivity.class);
-            intent.putExtra(GetSmsActivity.PHONE_NUMBER_TAG, phoneNumberEditText.getText());
+//            Intent intent = new Intent(this, GetSmsActivity.class);
+//            intent.putExtra(GetSmsActivity.PHONE_NUMBER_TAG, phoneNumberEditText.getText());
             sendPhoneToServer();
             progressDialog.show();
         } else {
@@ -146,6 +157,7 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
         telegramWebView.getSettings().setSupportMultipleWindows(true);
         telegramWebView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         telegramWebView.setWebViewClient(new TelegramWebViewClient(this));
+        telegramWebView.clearCache(true);
         telegramWebView.loadUrl(url);
 
         telegramWebView.setWebChromeClient(new WebChromeClient() {
@@ -166,6 +178,7 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
                 newWebView.getSettings().setSupportZoom(true);
                 newWebView.getSettings().setBuiltInZoomControls(true);
                 newWebView.getSettings().setSupportMultipleWindows(true);
+                newWebView.clearCache(true);
                 view.addView(newWebView);
                 WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
                 transport.setWebView(newWebView);
@@ -174,6 +187,7 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
                 newWebView.setWebViewClient(new WebViewClient() {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.clearCache(true);
                         view.loadUrl(url);
                         Log.d("@@@", "shouldOverrideUrlLoadingCHROME: " + url);
                         return true;
@@ -183,19 +197,6 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
                 return true;
             }
         });
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.d("@@@", "onKeyDown: ");
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (telegramWebView.canGoBack()) {
-                telegramWebView.goBack();
-            } else {
-                finish();
-            }
-        }
-        return true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -239,5 +240,28 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void checkLoginStatus() {
+        boolean loginStatus = settings.getBoolean(Account.getInSystem(), false);
+        if (loginStatus) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        Log.d("@@@", "checkLoginStatus: " + settings.getBoolean(Account.getInSystem(), false));
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.d("@@@", "onKeyDown: ");
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (telegramWebView.canGoBack()) {
+                telegramWebView.goBack();
+            } else {
+                finish();
+            }
+        }
+        return true;
     }
 }

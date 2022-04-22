@@ -111,17 +111,16 @@ public class ViewData extends AppCompatActivity {
     public void getCosts() {
         SharedPreferences sp = getApplicationContext().getSharedPreferences("Account", Context.MODE_PRIVATE);
         String spToken = "Token " + sp.getString("user_token", "");
-        Log.d("@@@", "getCosts: " + spToken);
+        Log.d("@@@", "ViewData getCosts: " + spToken);
 
         mAPIService.getCosts(locationId, costsId, spToken).enqueue(new Callback<GetCosts>() {
             @Override
             public void onResponse(Response<GetCosts> response) {
-                Log.d("@@@", "onResponse: " + response.raw());
+                Log.d("@@@", "ViewData onResponse: " + response.raw());
                 if (response.isSuccess()) {
                     fillData(response.body().getMainCostsData().getCostsData());
-
                 } else {
-                    showMessage("Error code: " + response.code());
+                    showMessage("ViewData Error code: " + response.code());
                 }
             }
 
@@ -134,12 +133,15 @@ public class ViewData extends AppCompatActivity {
 
     //Fills textViews with data returned from server
     private void fillData(List<CostsData> costsData) {
-        Log.d("@@@", "fillData: " + costsData.get(0).getStock_by_population());
-        consumption_rate.setText(String.valueOf(costsData.get(0).getConsumption_rate()));
-        produced.setText(String.valueOf(costsData.get(0).getProduced()));
-        stock_by_population.setText(String.valueOf(costsData.get(0).getStock_by_population()));
-        outlet_stock.setText(String.valueOf(costsData.get(0).getOutlet_stock()));
-        price.setText(String.valueOf(costsData.get(0).getPrice()));
+        if ((costsData.size()>0)) {
+            consumption_rate.setText(String.valueOf(costsData.get(0).getConsumption_rate()));
+            produced.setText(String.valueOf(costsData.get(0).getProduced()));
+            stock_by_population.setText(String.valueOf(costsData.get(0).getStock_by_population()));
+            outlet_stock.setText(String.valueOf(costsData.get(0).getOutlet_stock()));
+            price.setText(String.valueOf(costsData.get(0).getPrice()));
+        } else {
+            showMessage("Данные по этому продукту, не были внесены");
+        }
     }
 
     private void showMessage(String text) {

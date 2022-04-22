@@ -78,4 +78,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, String.format("%s", ex), Toast.LENGTH_SHORT).show();
         }
     }
+
 }
