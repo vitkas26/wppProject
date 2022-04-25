@@ -1,17 +1,13 @@
 package com.example.vpp_android;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -42,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     // set click listeners to buttons and appBar
     private void setupClickListeners() {
 
-        inputData.setOnClickListener(v -> startActivity(v, InputData.class));
+        inputData.setOnClickListener(v -> startActivity(v, QuestionnaireActivity.class));
 
         viewData.setOnClickListener(v -> startActivity(v, ViewData.class));
 

@@ -26,6 +26,7 @@
         <entry key="app/src/main/res/layout/activity_history.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/activity_input_data.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2341485507246377" />
+        <entry key="app/src/main/res/layout/activity_poll.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/activity_view_data.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/app_bar_main.xml" value="0.2341485507246377" />
@@ -36,6 +37,7 @@
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2341485507246377" />
+        <entry key="app/src/main/res/layout/fragment_poll.xml" value="0.30185185185185187" />
         <entry key="app/src/main/res/layout/fragment_slideshow.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/get_sms_activity.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/menu_header.xml" value="0.35625" />
@@ -43,8 +45,15 @@
         <entry key="app/src/main/res/layout/navigation_drawer.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/navigation_grawer.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/oauth_activity.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/poll_container.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/poll_one.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/product_item_dialog.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/public_main_activity.xml" value="0.2341485507246377" />
+        <entry key="app/src/main/res/layout/questionnaire_container.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/questionnaire_input_data_fragment.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/questionnaire_one_fragment.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/questionnaire_one_second_fragment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/questionnaire_one_third_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/recycler_item.xml" value="0.2341485507246377" />
         <entry key="app/src/main/res/layout/tool_bar.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.35625" />

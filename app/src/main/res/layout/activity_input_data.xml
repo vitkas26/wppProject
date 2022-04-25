@@ -4,30 +4,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InputData">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
 
             <Spinner
                 android:id="@+id/input_data_district_spinner"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="70dp" />
 
             <Spinner
                 android:id="@+id/input_data_spinner"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="140dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/consumption_rate_layout"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/input_data_spinner"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/consumption_rate">
 
@@ -45,6 +52,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/consumption_rate_layout"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/produced">
 
@@ -61,6 +70,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/produced_layout"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/stock_by_population">
 
@@ -77,6 +88,8 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/stock_by_population_layout"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/outlet_stock">
 
@@ -93,24 +106,36 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/outlet_stock_layout"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:hint="@string/consumption_rate">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/price"
                     android:inputType="numberDecimal"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/input_location_spinner"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/price_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp" />
             <Button
                 android:id="@+id/submit_costs"
                 android:layout_width="350dp"
                 android:layout_height="70dp"
+                android:layout_below="@id/input_location_spinner"
+                android:layout_alignStart="@id/price_layout"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/submit"
                 android:textSize="12sp" />
-        </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

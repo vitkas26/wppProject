@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Зарегистрированное предприятие (производство) 11"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_production"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="111"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="112"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production3"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="113"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production4"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="114"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="статус (ативный, временный, сезонный, постоянный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Среднее (малое) предприятие (работающее по патенту) 12"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_patent"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_patent1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="121"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_patent2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="122"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_patent3"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="123"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_patent4"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="124"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="статус (ативный, временный, сезонный, постоянный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Производитель сельскохозяйственной продукции 13"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_products"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="131"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="132"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products3"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="133"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products4"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="134"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="статус (ативный, временный, сезонный, постоянный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Предприятие не активное"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_company"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:hint="30"
+                android:layout_gravity="right"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_fio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="перевод"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Владелец (директор) предприятия фамилиясы, аты, атасынын аты (ФИО)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Координаты районного управления аграрного развития (РУАР): "/>
+            
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_phone_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Телефон"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_fax_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="факс"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_email_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e-mail"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_web_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Веб-сайт МСХ"/>
+
+            <Button
+                android:id="@+id/questionnaire_one_third_fragment_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="далее"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

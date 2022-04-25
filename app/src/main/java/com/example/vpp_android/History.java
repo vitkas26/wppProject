@@ -44,7 +44,7 @@ public class History extends AppCompatActivity implements HistoryAdapter.ItemCli
     }
 
     // make request to server to get all histories
-    private void getData() {
+    private void getData(){
         int regionId = 1;
         mApiService.getHistory(regionId, spToken).enqueue(new Callback<GetCosts>() {
             @Override

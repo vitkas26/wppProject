@@ -70,6 +70,8 @@
     <string name="residual_volume">Остаточный объем</string>
     <string name="created_at">дата создания</string>
     <string name="availability_in_month">Доступно в месяц</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--Items strings-->
     <!--    <string-array name="Products">-->
