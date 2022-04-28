@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <Spinner
+            android:id="@+id/questionnaire_input_data_fragment__spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
+
+        <TextView
+            android:id="@+id/questionnaire_input_data_fragment__product_id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="121"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="Код (продукта) "/>
+
+        <TextView
+            android:id="@+id/questionnaire_input_data_fragment__unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="kg"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/text_normal"
+            android:text="Единица измерения"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="@style/text_bold"
+            android:text="Предыдущий месяц"/>
+
+        <EditText
+            android:id="@+id/questionnaire_input_data_fragment__remainder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_margin="8dp"
+            android:hint="Продано (отгружено) в отчетном месяца "/>
+
+        <EditText
+            android:id="@+id/questionnaire_input_data_fragment__production"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_margin="8dp"
+            android:hint="Остаток (запасы) на 1 число последующего месяца"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/text_bold"
+            android:gravity="center"
+            android:text="Текущий месяц"/>
+
+
+        <EditText
+            android:id="@+id/questionnaire_input_data_fragment__corn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_margin="8dp"
+            android:hint="Продано (отгружено) в отчетном  месяца"/>
+
+        <EditText
+            android:id="@+id/questionnaire_input_data_fragment__corn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_margin="8dp"
+            android:hint="Остаток (запасы) на 1 число последующего месяца"/>
+
+        <Button
+            android:id="@+id/questionnaire_input_data_fragment__button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Отправить"/>
+    </LinearLayout>
+</ScrollView>

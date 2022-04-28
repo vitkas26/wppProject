@@ -28,8 +28,8 @@ public class QuestionnaireActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_questionnaire);
+
         questionnaireOne = findViewById(R.id.questionnaire_one);
         questionnaireTwo = findViewById(R.id.questionnaire_two);
         questionnaireSpinner = findViewById(R.id.questionnaire_spinner);
@@ -43,7 +43,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
         });
         questionnaireTwo.setOnClickListener(v -> {
             pollId = 1;
-            Intent intent = new Intent(QuestionnaireActivity.this, InputData.class);
+            Intent intent = new Intent(QuestionnaireActivity.this, QuestionnaireContainer.class);
             intent.putExtra(POLL_LANG_KEY, langId);
             intent.putExtra(POLL_ID_KEY, pollId);
             startActivity(intent);

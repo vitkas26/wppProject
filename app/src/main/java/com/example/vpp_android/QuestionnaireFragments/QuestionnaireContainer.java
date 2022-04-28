@@ -7,8 +7,11 @@ import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.example.vpp_android.InputData;
 import com.example.vpp_android.QuestionnaireActivity;
+import com.example.vpp_android.QuestionnaireFragments.QuestionnaireSecondFragment.QuestionnaireSecondFragment;
+import com.example.vpp_android.QuestionnaireFragments.QuestionnaireSecondFragment.QuestionnaireTwoInputDataFragment;
+import com.example.vpp_android.QuestionnaireFragments.QuestionnaireSecondFragment.QuestionnaireTwoThirdFragment;
+import com.example.vpp_android.QuestionnaireFragments.QuestionnaireSecondFragment.QuestionnaireTwoSecondFragment;
 import com.example.vpp_android.R;
 
 public class QuestionnaireContainer extends AppCompatActivity implements QuestionnaireListener {
@@ -43,26 +46,51 @@ public class QuestionnaireContainer extends AppCompatActivity implements Questio
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.questionnaire_container, questionnaireOne)
                         .commit();
+                break;
+            case 1:
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt(QuestionnaireActivity.POLL_LANG_KEY, langId);
+                Fragment questionnaireTwo = new QuestionnaireSecondFragment();
+                questionnaireTwo.setArguments(bundle1);
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.questionnaire_container, questionnaireTwo)
+                        .commit();
+                break;
         }
     }
 
     @Override
     public void chooseQuestionnaire(int id) {
         switch (id){
-            case 1:
+            case 11:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.questionnaire_container, new QuestionnaireOneSecondFragment())
                         .addToBackStack("QuestionnaireOneFragment").commit();
                 break;
-            case 2:
+            case 12:
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.questionnaire_container, new QuestionnaireOneThirdFragment())
                         .addToBackStack("QuestionnaireOneThirdFragment").commit();
                 break;
-            case 3:
+            case 13:
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.questionnaire_container, new QuestionnaireInputDataFragment())
+                        .replace(R.id.questionnaire_container, new QuestionnaireOneInputDataFragment())
                         .addToBackStack("QuestionnaireOneThirdFragment").commit();
+                break;
+            case 21:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.questionnaire_container, new QuestionnaireTwoSecondFragment())
+                        .addToBackStack("QuestionnaireSecondThirdFragment").commit();
+                break;
+            case 22:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.questionnaire_container, new QuestionnaireTwoThirdFragment())
+                        .addToBackStack("QuestionnaireTwoSecondFragment").commit();
+                break;
+            case 23:
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.questionnaire_container, new QuestionnaireTwoInputDataFragment())
+                        .addToBackStack("QuestionnaireSecondInputDataFragment").commit();
                 break;
         }
     }

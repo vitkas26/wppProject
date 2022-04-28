@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Продовольственный базар/рынок 20"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_production"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="201"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="202"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production3"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="203"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_production4"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="204"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Статус рынка(ативный, временный, сезонный, постоянный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Количество контейнеров на рынке 21"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_patent"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Контейнер на рынке 215"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_products"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:hint="№"
+                android:layout_gravity="right"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Продовольственный магазин (супермаркет) 22"/>
+
+            <EditText
+                android:id="@+id/questionnaire_second_third_fragment_score"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="221"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="222"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="статус магазина(продовольственный, смешанный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Склад по хранению пишевой продукции 23"/>
+
+            <EditText
+                android:id="@+id/questionnaire_second_third_fragment_product_score"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products_score1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="231"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products_score2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="232"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products_score3"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="233"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_third_fragment_products_score4"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="234"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="статус склада(ативный, временный, сезонный, постоянный)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="КИОСК (ларек) 24"/>
+
+            <EditText
+                android:id="@+id/questionnaire_second_third_fragment_kiosk"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_second_third_fragment_kiosk1"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="241"
+                    android:layout_gravity="right"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_second_third_fragment_kiosk2"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="12dp"
+                    android:hint="242"
+                    android:layout_gravity="right"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:text="Предприятие (объект) не активное"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_company"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:hint="30"
+                android:layout_gravity="right"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_fio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="перевод"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Владелец (директор) торговой точки фамилиясы, аты, атасынын аты (ФИО)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Координаты районного управления аграрного развития (РУАР): "/>
+            
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_phone_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Телефон"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_fax_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="факс"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_email_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="e-mail"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_third_fragment_web_director"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Веб-сайт МСХ"/>
+
+            <Button
+                android:id="@+id/questionnaire_second_third_fragment_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:text="далее"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

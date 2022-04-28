@@ -48,8 +48,8 @@ public class QuestionnaireOneFragment extends Fragment {
         questionnaire_one__button_kg = view.findViewById(R.id.questionnaire_one__button_kg);
         questionnaire_one__button_ru = view.findViewById(R.id.questionnaire_one__button_ru);
 
-        questionnaire_one__button_kg.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(1));
-        questionnaire_one__button_ru.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(1));
+        questionnaire_one__button_kg.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(11));
+        questionnaire_one__button_ru.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(11));
 
         langId = getArguments().getInt(QuestionnaireActivity.POLL_LANG_KEY);
 

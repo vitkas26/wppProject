@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Опросник\nпо сбору данных по наличию запасов основных продуктов питания на"
+                android:gravity="center"
+                style="@style/text_bold"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_date_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="дата (25.04.2022)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="карата"
+                style="@style/text_bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ПРЕДСТАВЛЯЮТ: продовольственный базар/рынок, крупные и средние продовольственные магазины, склады по хранению пишевой продукции, торговые точки (контейнеры, киоски)."
+                style="@style/text_bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo1_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo2_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo3_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo4_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo5_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo6_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo7_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_okpo8_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_bold"
+                android:gravity="right"
+                android:layout_margin="8dp"
+                android:text="ОКПО"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent1_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent2_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent3_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent4_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent5_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_patent6_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/text_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_margin="8dp"
+                android:text="Өздүк эсебинин\n № патента" />
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_coate_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Наименование торговой точки, склада"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:hint="Аймагы (Территория)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:gravity="center"
+                android:text="Облусу, району, шаары, айылдык аймак\n Область, район, город, айылный аймак"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate1_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate2_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate3_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate4_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate5_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate6_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate7_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate8_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate9_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate10_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate11_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate12_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate13_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_one_second_coate14_edit_text"
+                    android:layout_width="40dp"
+                    android:layout_height="50dp"
+                    android:layout_margin="5dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:gravity="center"
+                android:text="СОАТЕ  ( толтурулат)\n(заполняется автоматически)"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Дареги (почта индекси, көчөсү, үй №)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="Адрес (почтовый индекс, улица, № дома)"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_phone_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Телефон"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail (электрондук почта электронная почта)"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_date_of_completion_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="дата (25.04.2022)"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_author_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="аткаруучунун аты-жөну (фамилия исполнителя)"/>
+
+            <EditText
+                android:id="@+id/questionnaire_one_second_phone_author_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Телефон (телефон исполнителя)"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/text_normal"
+                android:text="фамилия и № телефона исполнителя"/>
+
+            <Button
+                android:id="@+id/questionnaire_two_second_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"
+                android:text="далее"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

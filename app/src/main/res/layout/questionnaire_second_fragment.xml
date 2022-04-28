@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/questionnaire_second__text_kg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Кыргыз Республикасынын «Официалдык статистика жөнүндө» Мыйзамына ылайык"
+                    style="@style/text_normal"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Купуялуулугуна кепилдик  берилет"
+                    android:gravity="center"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Маалыматтарды берүү тартибин, мөөнөтүн бузуу, аны бурмалап берүү, купуялуулугун сактабагандыгы Кыргыз Республикасынын мыйзамдарында бекитилген жоопкерчиликти тартууга алып келет"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="№1 Наличия запасов (торговля)"
+                    android:layout_margin="5dp"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Единовременная"
+                    style="@style/text_bold"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_edit_text_kg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Кыргыз Республикасынын"
+                    style="@style/text_bold"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_second__approved_edit_text_kg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/questionnaire_second__date_edit_text_kg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Заполните дату (25.04.2022)"/>
+
+                <Button
+                    android:id="@+id/questionnaire_second__button_kg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="кийинки"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/questionnaire_second__text_ru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ведомственная статистическая форма отчета"
+                    style="@style/text_normal"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="в соответствии с Законом Кыргызской Республики   «Об официальной статистике»"
+                    android:gravity="center"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Нарушение порядка, сроков представления информации, ее искажение и несоблюдение конфиденциальности влечет ответственность, установленную законодательством Кыргызской Республики"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="№1 Наличия запасов (производство)"
+                    android:layout_margin="5dp"
+                    style="@style/text_bold"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Единовременная"
+                    style="@style/text_bold"/>
+
+                <EditText
+                    android:id="@+id/questionnaire_second__edit_text_ru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Утвержден Приказом МСХ Кыргызской Республики"
+                    style="@style/text_bold"/>
+
+                <EditText
+                    android:id="@+id/poll_second__approved_edit_text_ru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/questionnaire_second__date_edit_text_ru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Заполните дату (25.04.2022)"/>
+
+                <Button
+                    android:id="@+id/questionnaire_second__button_ru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="далее"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

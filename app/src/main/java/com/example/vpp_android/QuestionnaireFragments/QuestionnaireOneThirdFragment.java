@@ -36,6 +36,6 @@ public class QuestionnaireOneThirdFragment extends Fragment {
 
         questionnaire_one_third_fragment_button = view.findViewById(R.id.questionnaire_one_third_fragment_button);
 
-        questionnaire_one_third_fragment_button.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(3));
+        questionnaire_one_third_fragment_button.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(13));
     }
 }
