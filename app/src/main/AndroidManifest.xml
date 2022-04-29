@@ -15,19 +15,19 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Vppandroid">
-        <activity android:name=".History" />
-        <activity android:name=".MainActivity"
+        <activity android:name=".ui.activities.HistoryActivity" />
+        <activity android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewData" />
-        <activity android:name=".InputData" />
-        <activity android:name=".OauthActivity"/>
-        <activity android:name=".QuestionnaireActivity"/>
-        <activity android:name=".QuestionnaireFragments.QuestionnaireContainer"/>
+        <activity android:name=".ui.activities.ViewDataActivity" />
+        <activity android:name=".ui.activities.InputDataActivity" />
+        <activity android:name=".ui.activities.OauthActivity"/>
+        <activity android:name=".ui.activities.QuestionnaireActivity"/>
+        <activity android:name=".ui.questionnaire_fragments.QuestionnaireContainer"/>
         <meta-data
             android:name="firebase_performance_logcat_enabled"
             android:value="true" />
