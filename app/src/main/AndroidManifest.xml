@@ -16,16 +16,16 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Vppandroid">
         <activity android:name=".ui.activities.HistoryActivity" />
-        <activity android:name=".ui.activities.MainActivity"
+        <activity android:name=".ui.activities.MainActivity"/>
+        <activity android:name=".ui.activities.ViewDataActivity" />
+        <activity android:name=".ui.activities.InputDataActivity" />
+        <activity android:name=".ui.activities.OauthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.ViewDataActivity" />
-        <activity android:name=".ui.activities.InputDataActivity" />
-        <activity android:name=".ui.activities.OauthActivity"/>
         <activity android:name=".ui.activities.QuestionnaireActivity"/>
         <activity android:name=".ui.questionnaire_fragments.QuestionnaireContainer"/>
         <meta-data

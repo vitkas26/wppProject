@@ -40,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
     // set click listeners to buttons and appBar
     private void setupClickListeners() {
 
-        inputData.setOnClickListener(v -> startActivity(v, QuestionnaireActivity.class));
+        inputData.setOnClickListener(v -> {
+            startActivity(v, QuestionnaireActivity.class);
+            finish();
+        });
 
         viewData.setOnClickListener(v -> startActivity(v, ViewDataActivity.class));
 

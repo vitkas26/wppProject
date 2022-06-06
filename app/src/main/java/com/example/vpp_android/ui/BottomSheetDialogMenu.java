@@ -132,7 +132,7 @@ public class BottomSheetDialogMenu extends BottomSheetDialogFragment {
                 SharedPreferences sp = getContext().getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
                 String token = sp.getString(Account.getUserToken(), "");
                 String tokenAddHeader = "Token " + token;
-                mApiService.getUserLocation(tokenAddHeader,longitude, latitude).enqueue(new Callback<UserLocation>() {
+                mApiService.postUserLocation(tokenAddHeader,longitude, latitude).enqueue(new Callback<UserLocation>() {
                     @Override
                     public void onResponse(Response<UserLocation> response) {
                         Log.d("@@@", "BottomSheet getLocation() onResponse: " + response.raw());

@@ -23,7 +23,7 @@
                 style="@style/text_bold"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_date_edit_text"
+                android:id="@+id/questionnaire_second_second_date_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="дата (25.04.2022)"/>
@@ -46,49 +46,49 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo1_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo1_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo2_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo2_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo3_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo3_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo4_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo4_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo5_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo5_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo6_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo6_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo7_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo7_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_okpo8_edit_text"
+                    android:id="@+id/questionnaire_second_second_okpo8_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
@@ -110,37 +110,37 @@
                 android:gravity="right">
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent1_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent1_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent2_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent2_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent3_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent3_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent4_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent4_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent5_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent5_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_patent6_edit_text"
+                    android:id="@+id/questionnaire_second_second_patent6_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
@@ -156,7 +156,7 @@
                 android:text="Өздүк эсебинин\n № патента" />
 
             <EditText
-                android:id="@+id/questionnaire_one_second_coate_edit_text"
+                android:id="@+id/questionnaire_second_second_coate_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Наименование торговой точки, склада"/>
@@ -181,43 +181,43 @@
                 android:gravity="center">
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate1_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate1_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate2_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate2_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate3_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate3_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate4_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate4_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate5_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate5_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate6_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate6_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate7_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate7_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
@@ -231,43 +231,43 @@
                 android:gravity="center">
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate8_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate8_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate9_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate9_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate10_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate10_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate11_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate11_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate12_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate12_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate13_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate13_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
 
                 <EditText
-                    android:id="@+id/questionnaire_one_second_coate14_edit_text"
+                    android:id="@+id/questionnaire_second_second_coate14_edit_text"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:layout_margin="5dp"/>
@@ -282,7 +282,7 @@
                 android:text="СОАТЕ  ( толтурулат)\n(заполняется автоматически)"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_address"
+                android:id="@+id/questionnaire_second_second_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Дареги (почта индекси, көчөсү, үй №)"/>
@@ -294,33 +294,34 @@
                 android:text="Адрес (почтовый индекс, улица, № дома)"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_phone_edit_text"
+                android:id="@+id/questionnaire_second_second_phsecond_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Телефон"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_email_edit_text"
+                android:id="@+id/questionnaire_second_second_email_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="E-mail (электрондук почта электронная почта)"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_date_of_completion_edit_text"
+                android:id="@+id/questionnaire_second_second_date_of_completion_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="дата (25.04.2022)"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_author_edit_text"
+                android:id="@+id/questionnaire_second_second_author_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="аткаруучунун аты-жөну (фамилия исполнителя)"/>
 
             <EditText
-                android:id="@+id/questionnaire_one_second_phone_author_edit_text"
+                android:id="@+id/questionnaire_second_second_phone_author_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
                 android:hint="Телефон (телефон исполнителя)"/>
 
             <TextView
@@ -330,7 +331,7 @@
                 android:text="фамилия и № телефона исполнителя"/>
 
             <Button
-                android:id="@+id/questionnaire_two_second_button"
+                android:id="@+id/questionnaire_second_second_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

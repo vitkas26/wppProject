@@ -59,9 +59,6 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         settings = getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        SharedPreferences sp = getSharedPreferences(Account.getFILE(), Context.MODE_PRIVATE);
-
         checkLoginStatus();
 
         initViews();
@@ -122,7 +119,7 @@ public class OauthActivity extends AppCompatActivity implements TelegramWebViewC
 
     // make request to server sending phone number
     private void sendPhoneToServer() {
-        mApiService.sendTel(phoneNumberEditText.getText().toString()).enqueue(new Callback<TelegramUrl>() {
+        mApiService.postTel(phoneNumberEditText.getText().toString()).enqueue(new Callback<TelegramUrl>() {
             @Override
             public void onResponse(Response<TelegramUrl> response) {
                 Log.d("@@@", "onResponse: " + response.raw());

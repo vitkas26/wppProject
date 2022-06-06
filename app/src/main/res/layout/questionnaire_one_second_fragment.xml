@@ -321,6 +321,7 @@
                 android:id="@+id/questionnaire_one_second_phone_author_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="phone"
                 android:hint="Телефон (телефон исполнителя)"/>
 
             <TextView

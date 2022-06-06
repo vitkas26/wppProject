@@ -13,10 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.vpp_android.ui.activities.QuestionnaireActivity;
+import com.example.vpp_android.ui.questionnaire_fragments.QuestionaireOneFragments.QuestionnaireOneFragment;
 import com.example.vpp_android.ui.questionnaire_fragments.QuestionnaireListener;
 import com.example.vpp_android.R;
 
-public class QuestionnaireSecondFragment extends Fragment {
+public class QuestionnaireTwoFragment extends Fragment {
 
     private LinearLayout questionnaireSecondTextRu;
     private LinearLayout questionnaireSecondTextKg;

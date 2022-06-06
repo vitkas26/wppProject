@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,8 +18,11 @@ import com.example.vpp_android.R;
 
 public class QuestionnaireOneSecondFragment extends Fragment {
 
+    private static final int poleId = 1;
     private QuestionnaireListener questionnaireListener;
     private Button questionnaire_one_second_button;
+    private EditText phoneNumberEditText;
+    private EditText authorEditText;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -36,8 +41,30 @@ public class QuestionnaireOneSecondFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        questionnaire_one_second_button = view.findViewById(R.id.questionnaire_one_second_button);
+        initViews(view);
+    }
 
-        questionnaire_one_second_button.setOnClickListener(v -> questionnaireListener.chooseQuestionnaire(12));
+    private void initViews(View view) {
+        phoneNumberEditText = view.findViewById(R.id.questionnaire_one_second_phone_author_edit_text);
+        authorEditText = view.findViewById(R.id.questionnaire_one_second_phone_author_edit_text);
+        questionnaire_one_second_button = view.findViewById(R.id.questionnaire_one_second_button);
+        initListener();
+    }
+
+    private void initListener() {
+        questionnaire_one_second_button.setOnClickListener(v -> {
+            checkEntries();
+            if (checkEntries()) {
+                questionnaireListener.sendDataSecondFragment(Double.parseDouble(phoneNumberEditText.getText().toString()), authorEditText.getText().toString(), poleId);
+                questionnaireListener.chooseQuestionnaire(12);
+            } else {
+                Toast.makeText(requireContext(), "Не введены данные сотрудника", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+    }
+
+    private boolean checkEntries() {
+        return !phoneNumberEditText.getText().toString().isEmpty() || !authorEditText.getText().toString().isEmpty();
     }
 }

@@ -70,8 +70,17 @@
     <string name="residual_volume">Остаточный объем</string>
     <string name="created_at">дата создания</string>
     <string name="availability_in_month">Доступно в месяц</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    //Data for spinner in first_questionnaire
+    <string name="quest_one_third_frag_enterp_stat1">Зарегистрированное предприятие (производство) 11</string>
+    <string name="quest_one_third_frag_enterp_stat2">Среднее (малое) предприятие (работающее по патенту) 12</string>
+    <string name="quest_one_third_frag_enterp_stat3">Производитель сельскохозяйственной продукции 13</string>
+
+    //Data for spinner in second_questionnaire
+    <string name="quest_two_third_frag_outlet_stat1">Продовольственный базар/рынок</string>
+    <string name="quest_two_third_frag_outlet_stat2">Продовольственный магазин (супермаркет)</string>
+    <string name="quest_two_third_frag_outlet_stat3">Склад по хранению пишевой продукции</string>
+    <string name="quest_two_third_frag_outlet_stat4">КИОСК (ларек) </string>
+
 
     <!--Items strings-->
     <!--    <string-array name="Products">-->

@@ -10,8 +10,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.vpp_android.R;
+import com.example.vpp_android.domain.products_classes.QuestionnaireDataOutletNew;
 
 public class QuestionnaireTwoInputDataFragment extends Fragment {
+
+
+    public static final String BUNDLE_KEY = "SECOND_QUEST_BUNDLE_KEY";
+    QuestionnaireDataOutletNew questionnaireDataOutletNew = new QuestionnaireDataOutletNew();
 
     @Nullable
     @Override
@@ -22,5 +27,6 @@ public class QuestionnaireTwoInputDataFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        questionnaireDataOutletNew = getArguments().getParcelable(BUNDLE_KEY);
     }
 }
